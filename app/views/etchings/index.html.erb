@@ -1,0 +1,15 @@
+<section class='container'>
+  <h1>Etchings#index</h1>
+  <p>Find me in app/views/etchings/index.html.erb</p>
+
+  <% @etchings.each do |etching| %>
+    <%= link_to etching do %>
+      <div class='etching col-md-3' style="background-image: url('<%= etching.thumbnail_url %>')">
+        <h2><%= etching.title %></h2>
+        <p><%= etching.description %></p>
+        <p><%= etching.thumbnail_url %></p>
+      </div>
+    <% end %>
+  <% end %>
+
+</section>

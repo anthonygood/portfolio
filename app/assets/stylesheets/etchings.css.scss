@@ -1,0 +1,15 @@
+// Place all the styles related to the Etchings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.etching {
+  height: 350px; 
+  background-size: cover;
+  background-position: center;
+
+  h2 {
+    text-transform: capitalize;
+  }
+  p {
+    word-break: break-word;
+  }
+}

@@ -12,10 +12,10 @@ class Etching < ActiveRecord::Base
 
   def set_urls
     title = to_filename(self.title)
-    @filetype = 'jpeg' unless @filetype
+    @filetype = 'jpg' unless @filetype
 
-    self.thumbnail_url = "/images/#{title}_thumbnail.#{@filetype}"
-    self.large_img_url = "/images/#{title}.#{@filetype}"
+    self.thumbnail_url = "/#{title}_thumbnail.#{@filetype}"
+    self.large_img_url = "/#{title}.#{@filetype}"
   end
 
   def to_filename(string)

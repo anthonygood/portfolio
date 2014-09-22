@@ -36,7 +36,6 @@ RSpec.describe Etching, :type => :model do
       # expect(subject).to be_valid
 
       subject.date_created = "not a year"
-      p subject
       expect(subject).to be_invalid
     end
   end
