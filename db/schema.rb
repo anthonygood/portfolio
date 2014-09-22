@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921182300) do
+ActiveRecord::Schema.define(version: 20140922122426) do
 
   create_table "etchings", force: true do |t|
     t.string   "title"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140921182300) do
     t.string   "thumbnail_url"
     t.integer  "plates"
     t.integer  "print_run"
-    t.date     "date"
+    t.date     "date_created"
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
