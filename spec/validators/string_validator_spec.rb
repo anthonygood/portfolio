@@ -1,26 +1,26 @@
 require 'rails_helper'
 
-class Validatable
+class StringValidatable
   include ActiveModel::Validations
-  validates :title, string: true
+  validates :attr, string: true
   validates :score, string: false
-  attr_accessor :title, :score
+  attr_accessor :attr, :score
 end
 
 describe StringValidator do 
 
-  let(:subject)   { Validatable.new }
+  let(:subject)   { StringValidatable.new }
   let(:validator) { StringValidator.new }
 
   context "string: true" do
     it "validates strings" do
-      subject.title = "string"
+      subject.attr = "string"
 
       expect(subject).to be_valid
     end
 
     it "invalidates non-strings" do
-      subject.title = 44
+      subject.attr = 44
 
       expect(subject).to be_invalid
     end

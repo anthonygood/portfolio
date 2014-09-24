@@ -1,0 +1,2 @@
+module EtchingsHelper
+end
