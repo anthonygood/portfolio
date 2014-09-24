@@ -10,9 +10,16 @@ titles = [
   "Bicycle",
   "Bicycle 2",
   "Billy",
+  "Bottles",
   "Cage",
+  "Cats",
+  "Fishes",
+  "Garden Nude",
+  "Hinge",
+  "Look Right",
   # "Nude in Garden",
   "No Games",
+  "Nude and Cloth",
   "Self Portrait"
 ]
 
