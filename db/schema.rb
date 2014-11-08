@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922122426) do
+ActiveRecord::Schema.define(version: 20140927130249) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "etchings", force: true do |t|
     t.string   "title"
@@ -22,11 +25,22 @@ ActiveRecord::Schema.define(version: 20140922122426) do
     t.string   "thumbnail_url"
     t.integer  "plates"
     t.integer  "print_run"
-    t.date     "date_created"
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "year"
   end
+
+  create_table "prints", force: true do |t|
+    t.string   "thumbnail_url"
+    t.string   "large_url"
+    t.string   "tags"
+    t.integer  "etching_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prints", ["etching_id"], name: "index_prints_on_etching_id", using: :btree
 
   create_table "widgets", force: true do |t|
     t.string   "name"

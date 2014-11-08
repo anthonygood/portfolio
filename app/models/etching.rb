@@ -4,23 +4,20 @@ class Etching < ActiveRecord::Base
   validates :title, presence: true, string: true
   validates_with StringValidator, attributes: [:description, :notes, :large_img_url, :thumbnail_url], allow_blank: true
   validates_numericality_of :height, :width, :plates, :print_run, { only_integer: true, allow_blank: true }
-  validates :date_created_before_type_cast, { year: true, allow_blank: true }
+  validates :year, { year: true, allow_blank: true }
 
-  before_save :set_urls
+  has_many :prints, dependent: :destroy
 
-  private
+  class << self
+    def create_with_prints(attributes={})
+      raise ArgumentError, "You must specify what prints to create" unless attributes[:versions]
 
-  def set_urls
-    title = to_filename(self.title)
-    @filetype = 'jpg' unless @filetype
+      create attributes.except(:versions)
 
-    self.thumbnail_url = "/#{title}_thumbnail.#{@filetype}"
-    self.large_img_url = "/#{title}.#{@filetype}"
+      attributes[:versions].each do |version|
+        Print.create_with_image(version)
+      end
+    end
   end
-
-  def to_filename(string)
-    string.gsub(' ', '_').
-    downcase
-  end
-
+  
 end
