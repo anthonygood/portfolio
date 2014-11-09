@@ -4,15 +4,18 @@ class Print < ActiveRecord::Base
   validates_presence_of :etching
 
   class << self
-    def create_with_image(filename, filetype="jpg")
-      # can be called with ("filename.extension") or ("filename", "extension")
-      # or just ("filename") 
-      filename, filetype = filename.split(".") if filename.split(".").length > 1
+    def create_with_image(etching, filetype="jpg")
+      filename = to_snake_case etching.title
 
       create(
-        large_url: "/#{filename}.#{filetype}", 
+        etching:       etching,
+        large_url:     "/#{filename}.#{filetype}", 
         thumbnail_url: "/#{filename}_thumbnail.#{filetype}"
         )
+    end
+
+    def to_snake_case(string)
+      string.tr(' ', '_').downcase
     end
   end
 

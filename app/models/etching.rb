@@ -2,7 +2,7 @@ class Etching < ActiveRecord::Base
   attr_accessor :filetype
 
   validates :title, presence: true, string: true
-  validates_with StringValidator, attributes: [:description, :notes, :large_img_url, :thumbnail_url], allow_blank: true
+  validates_with StringValidator, attributes: [:long_description, :short_description, :notes], allow_blank: true
   validates_numericality_of :height, :width, :plates, :print_run, { only_integer: true, allow_blank: true }
   validates :year, { year: true, allow_blank: true }
 
@@ -10,12 +10,16 @@ class Etching < ActiveRecord::Base
 
   class << self
     def create_with_prints(attributes={})
-      raise ArgumentError, "You must specify what prints to create" unless attributes[:versions]
+      raise ArgumentError, "You must specify how many prints to create" unless attributes[:versions]
 
-      create attributes.except(:versions)
+      etching = create attributes.except(:versions)
 
-      attributes[:versions].each do |version|
-        Print.create_with_image(version)
+      attributes[:versions].each_with_index do |version, index|
+        if index < 1
+          etching.prints.create_with_image("#{version}")
+        else
+          etching.prints.create_with_image("#{version}_#{index + 1}")
+        end
       end
     end
   end

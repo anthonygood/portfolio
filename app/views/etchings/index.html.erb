@@ -6,7 +6,8 @@
     <%= link_to etching do %>
       <div class='etching col-md-3' style="background-image: url('<%= etching.thumbnail_url %>')">
         <h2><%= etching.title %></h2>
-        <p><%= etching.description %></p>
+        <p><%= etching.long_description %></p>
+        <p><%= etching.short_description %></p>
         <p><%= etching.thumbnail_url %></p>
         <p><%= etching.large_img_url %></p>
         <p><%= etching.height %></p>
