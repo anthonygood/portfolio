@@ -78,44 +78,6 @@ RSpec.describe Etching, :type => :model do
     end
   end
 
-  context "saving" do
-    let!(:subject){ Etching.create(title: "Nude Descending Stairs") }
-
-    # it "sets the image url" do
-    #   expect(subject.large_img_url).to eq '/nude_descending_stairs.jpg'
-    # end
-
-    # it "sets a thumbnail url" do
-    #   expect(subject.thumbnail_url).to eq '/nude_descending_stairs_thumbnail.jpg'
-    # end
-
-    # it "changes Title Case to underscore_case" do
-    #   subject.title = "Frog in the Drain"
-    #   subject.save!
-
-    #   expect(subject.large_img_url).to eq '/frog_in_the_drain.jpg'
-    # end
-
-    # it "can update the file extension" do
-    #   subject.filetype = 'png'
-    #   subject.save!
-
-    #   expect(subject.large_img_url).to eq '/nude_descending_stairs.png'
-    # end
-
-    # it "doesn't change the url every time" do
-    #   subject.title = "Nude in Garden"
-    #   subject.filetype = "bmp"
-    #   subject.save!
-    #   expect(subject.large_img_url).to eq '/nude_in_garden.bmp'
-
-    #   subject.plates = 2
-    #   subject.year = 1979
-
-    #   expect{ subject.save! }.not_to change{ subject.large_img_url }
-    # end
-  end
-
   context "association with prints" do
     let(:association) { Etching.reflect_on_association(:prints) }
 

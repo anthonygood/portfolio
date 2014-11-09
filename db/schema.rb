@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927130249) do
+ActiveRecord::Schema.define(version: 20141108201913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "etchings", force: true do |t|
     t.string   "title"
-    t.text     "description"
+    t.text     "short_description"
     t.integer  "height"
     t.integer  "width"
     t.string   "large_img_url"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20140927130249) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "year"
+    t.string   "long_description"
+    t.boolean  "listed"
   end
 
   create_table "prints", force: true do |t|
