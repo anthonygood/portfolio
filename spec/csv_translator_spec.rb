@@ -2,13 +2,12 @@
 require 'rails_helper'
 require './lib/csv_translator'
 
-
-
 describe 'CSVTranslator' do
-  let(:subject) { CSVTranslator.read 'file_name', model }
+  let(:subject) { CSVTranslator.new 'file_name', model }
   let(:model)   { double("fake model") }
 
   before do
+    allow_any_instance_of(CSVTranslator).to receive(:puts)  # suppress console output
     allow(CSV).to receive(:read) do
       [
         %w& title secret redundant_attribute &,
@@ -27,21 +26,9 @@ describe 'CSVTranslator' do
     expect{ CSVTranslator.new 'file_name', Marlon }.to raise_error
   end
 
-  describe "validating column titles" do
-    it "uses the passed model" do
-      expect(model).to receive_message_chain(:new, :attributes, :keys)
 
-      subject.valid_column_titles
-    end
-
-    it "verifies the CSV's column_titles" do
-      expect(subject.valid_column_titles).to eql ["title", "secret"]
-      expect(subject.invalid_column_titles).to eql ["redundant_attribute"]
-    end
-
-    it "collects the indices of bad column titles" do
-      expect(subject.invalid_column_indices).to eql [2]
-    end
+  it "verifies the CSV's column_titles" do
+    expect(subject.invalid_column_titles).to eql ["redundant_attribute"]
   end
 
   it "reads the CSV file" do
@@ -50,7 +37,7 @@ describe 'CSVTranslator' do
   end
 
   describe "translates" do
-    let(:translation) { subject.translate }
+    let(:translation) { subject.translations }
     it "file into an array of hashes" do
       expect(translation.class).to be Array
     end
@@ -61,13 +48,62 @@ describe 'CSVTranslator' do
       end
 
       it "has the values defined by the CSV" do
-        binding.pry
         expect(translation.first[:title]).to eql "Cats"
         expect(translation.last[:secret]).to eql "unmarked"
       end
 
       it "can exclude invalid column_titles" do
-        # expect(translation.)
+        expect(translation.first.filter).to eql({title: "Cats", secret: "the_first_secret"})
+        expect(translation.second.filter).to eql({title: "Self-portrait", secret: "unmarked"})
+      end
+    end
+  end
+
+  describe "populating database" do
+    before do
+      allow(model).to receive(:create)
+    end
+
+    it "can create new records from the CSV" do
+      expect(model).to receive(:create).with({title: "Cats", secret: "the_first_secret"})
+      expect(model).to receive(:create).with({title: "Self-portrait", secret: "unmarked"})
+      subject.write_records_to_db
+    end
+  end
+
+  context "<< integration >>" do
+    before do
+      allow(CSV).to receive(:read) do
+      [
+        %w& title secret redundant_attribute &,
+        %w& Cats the_first_secret 57 &,
+        %w& Self-portrait unmarked 56 &
+      ]
+      end
+    end
+    let(:subject) { CSVTranslator.new 'file_name', Etching }
+
+    it "powers through the stack" do
+      expect{ subject.write_records_to_db }.to change{ Etching.count }.by 2
+    end
+
+    describe "errors" do
+      before do
+        allow(Etching).to receive(:create).and_raise Exception.new "Record not created"
+        subject.write_records_to_db
+      end
+
+      it "get collected by each translation" do
+        expect(subject.translations.first[:error].message).to eql("Record not created")
+      end
+
+      it "are accessible by the Translator object" do
+        expect(subject.translations_with_errors.count).to eq 2
+        expect(subject.translations_with_errors.first[:error].message).to eql("Record not created")
+      end
+
+      it "can be checked" do
+        expect(subject.errors?).to be true
       end
     end
   end
