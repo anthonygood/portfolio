@@ -6,23 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-titles = [
-  "Bicycle",
-  "Bicycle 2",
-  "Billy",
-  "Bottles",
-  "Cage",
-  "Cats",
-  "Fishes",
-  "Garden Nude",
-  "Hinge",
-  "Look Right",
-  # "Nude in Garden",
-  "No Games",
-  "Nude and Cloth",
-  "Self Portrait"
-]
+require_relative '../lib/csv_translator'
 
-titles.each do |title|
-  Etching.create(title: title)
+t = CSVTranslator.new "#{Rails.root}/app/etchings.csv", Etching
+t.write_records_to_db
+
+if t.errors?
+  puts "There were errors writing the following records to the database:"
+  puts t.translations_with_errors
+else
+  puts "There were no errors to report."
 end
