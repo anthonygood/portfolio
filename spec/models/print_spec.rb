@@ -36,6 +36,15 @@ RSpec.describe Print, :type => :model do
       expect(new_print.large_url).to eq('/boo_radley.jpg')
     end
 
+    it "appends an increment to the urls" do
+      Print.create_with_image(etching, 'png')
+      Print.create_with_image(etching)
+      Print.create_with_image(etching, 'xph')
+      expect(etching.prints.first.thumbnail_url).to eql "/boo_radley_thumbnail.png"
+      expect(etching.prints.second.thumbnail_url).to eql "/boo_radley_2_thumbnail.jpg"
+      expect(etching.prints.last.large_url).to eql "/boo_radley_3.xph"
+    end
+
     context "valid" do
       let(:etching) { Etching.create(title: "The Golden Goose") }
       
