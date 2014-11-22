@@ -21,7 +21,7 @@ class CSVTranslator
   def write_records_to_db
     translations.each do |t|
       begin
-        model.create t.filter
+        model.create! t.filter
         puts "Successfully created record #{t}"
       rescue Exception => error
         t.reject_with_error(error)
@@ -34,8 +34,8 @@ class CSVTranslator
     !translations_with_errors.empty?
   end
 
-  def translations_with_errors 
-    translations.select { |t| t.error? }
+  def translations_with_errors
+    translations.select { |t| t.error }
   end
 
   def invalid_column_titles
@@ -67,7 +67,7 @@ class CSVTranslator
       self[:error] = error
     end
 
-    def error?
+    def error
       self[:error]
     end
 

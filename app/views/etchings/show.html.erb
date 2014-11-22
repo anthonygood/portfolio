@@ -1,5 +1,5 @@
-<div class='etching col-md-3' style="background-image: url('<%= @etching.thumbnail_url %>')">
+<div class='etching col-md-3' %>')">
   <h2><%= @etching.title %></h2>
-  <p><%= @etching.description %></p>
-  <p><%= @etching.thumbnail_url %></p>
+  <p>Summary: <%= @etching.short_description %></p>
+  <p>Description: <%= @etching.long_description %></p>
 </div>
