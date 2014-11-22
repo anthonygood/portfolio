@@ -4,7 +4,7 @@ class Print < ActiveRecord::Base
   validates_presence_of :etching
 
   class << self
-    def create_with_image(etching, filetype="jpg")
+    def create_with_image(etching, filetype="jpg", notes=nil)
       filename  = to_snake_case(etching.title)
       increment = incrementor(etching)
       filename << increment if increment
@@ -12,7 +12,8 @@ class Print < ActiveRecord::Base
       create(
         etching:       etching,
         large_url:     "/#{filename}.#{filetype}", 
-        thumbnail_url: "/#{filename}_thumbnail.#{filetype}"
+        thumbnail_url: "/#{filename}_thumbnail.#{filetype}",
+        notes:         notes
         )
     end
 

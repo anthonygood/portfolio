@@ -45,6 +45,14 @@ RSpec.describe Print, :type => :model do
       expect(etching.prints.last.large_url).to eql "/boo_radley_3.xph"
     end
 
+    it "attaches notes to print" do
+      Print.create_with_image(etching, 'jpg', "an unusual print")
+      expect(etching.prints.last.notes).to eql "an unusual print"
+      
+      Print.create_with_image(etching, 'jpg', "brown and blue")
+      expect(etching.prints.last.notes).to eql "brown and blue"
+    end
+
     context "valid" do
       let(:etching) { Etching.create(title: "The Golden Goose") }
       
