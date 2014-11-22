@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108201913) do
+ActiveRecord::Schema.define(version: 20141121180447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,15 +21,13 @@ ActiveRecord::Schema.define(version: 20141108201913) do
     t.text     "short_description"
     t.integer  "height"
     t.integer  "width"
-    t.string   "large_img_url"
-    t.string   "thumbnail_url"
     t.integer  "plates"
     t.integer  "print_run"
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "year"
-    t.string   "long_description"
+    t.text   "long_description"
     t.boolean  "listed"
   end
 
