@@ -1,9 +1,9 @@
 class EtchingsController < ApplicationController
   def index
-    @etchings = Etching.all
+    @etchings = Etching.includes(:prints).all
   end
 
   def show
-    @etching = Etching.find params[:id]
+    @etching = Etching.includes(:prints).find params[:id]
   end
 end

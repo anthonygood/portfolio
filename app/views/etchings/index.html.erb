@@ -4,13 +4,18 @@
 
   <% @etchings.each do |etching| %>
     <%= link_to etching do %>
-      <div class='etching col-md-3'>
+      <div class='etching col-md-3' style="background-image: url(<%= etching.prints.first.thumbnail_url %>)">
         <h2><%= etching.title %></h2>
-        <p><%= etching.long_description %></p>
-        <p><%= etching.short_description %></p>
-        <p><%= etching.height %></p>
-        <p><%= etching.width %></p>
-        <p><%= etching.plates %></p>
+        <p>Prints: <%= etching.prints.count %></p>
+        <p>Short: <%= etching.short_description %></p>
+        <p>Year: <%= etching.year %></p>
+        <p>Long: <%= etching.long_description %></p>
+        <p>Notes: <%= etching.notes %></p>
+        <p>Height: <%= etching.height %>mm</p>
+        <p>Width: <%= etching.width %>mm</p>
+        <p>Plates: <%= etching.plates %></p>
+        <p>Print run: <%= etching.print_run %></p>
+        <p>Listed: <%= etching.listed %></p>
       </div>
     <% end %>
   <% end %>

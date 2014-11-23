@@ -12,6 +12,8 @@ describe 'generate_from_csv' do
   end
 
   before do
+    silence(CSVTranslator)
+    silence(Rake)
     # Application.load_tasks 
     allow(CSV).to receive(:read) do
       [
@@ -33,7 +35,7 @@ describe 'generate_from_csv' do
   end
 
   it "writes to the db" do
-    expect(Etching).to receive(:create).exactly(4).times
+    expect(Etching).to receive(:create!).exactly(4).times
     run_rake_task
   end
 
