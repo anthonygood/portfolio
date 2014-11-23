@@ -1,6 +1,14 @@
 // Place all the styles related to the Etchings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(http://fonts.googleapis.com/css?family=Oswald:400,300);
+
+#application {
+  h1, h2, p {
+    font-family: Oswald;
+  }
+}
+
 .etching {
   height: 500px; 
   background-size: cover;
@@ -13,3 +21,39 @@
     word-break: break-word;
   }
 }
+
+#show {
+  h1 {
+    font-size: 42px;
+  }
+
+  p {
+    font-size: 20px;
+    font-weight: 100;
+    color: rgb(100, 100, 100);
+  }
+
+  img {
+    margin-top: 25px;
+    max-width: 100%;
+  }
+  .thumbnail-link {
+    img {
+      max-height: 150px;
+      max-width: 150px;
+      margin-left: 15px;
+    }
+  }
+  .landscape .thumbnail-link:first-child img { margin-left: 0; }
+
+  .portrait {
+    .medium {
+      float: left;
+    }
+  }
+  .back-arrow {
+    font-size: 100px;
+
+  }
+}
+

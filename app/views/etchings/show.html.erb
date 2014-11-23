@@ -1,12 +1,29 @@
-<div class='container'>
-  <div class='etching col-md-3'>
-    <h2><%= @etching.title %></h2>
-    <p>Summary: <%= @etching.short_description %></p>
-    <p>Description: <%= @etching.long_description %></p>
+<div class='container' id="show">
+  <div class='col-md-1'>
+    <%= link_to '<', :etchings, :class => 'back-arrow' %>
   </div>
+  <div class='description col-md-3'>
+    <h1><%= @etching.title %></h1>
+    <p>Height: <%= @etching.height %>mm</p>
+    <p>Width: <%= @etching.width %>mm</p>
+    <% if @etching.plates %>
+      <p>Plates: <%= @etching.plates %></p>
+    <% end %>
+    <p>Print run: <%= @etching.print_run %></p>
+    <p><%= @etching.long_description %></p>
+  </div>
+  
+  <div class='col-md-8 <%= @etching.orientation %>'>
+    <img class='medium' src="<%= @etching.prints.first.medium_url %>" />
+    <% if @etching.prints.count > 1 %>
+      <div class="thumbnails">
+        <% @etching.prints.each do |print| %>
+        <a class="thumbnail-link">
+          <img src="<%=print.medium_url%>" />
+        </a>
+        <% end %>
+      </div>
+    <% end %>
 
-  <% @etching.prints.each do |print| %>
-    <img src="<%= print.thumbnail_url %>" />
-    <p><%= print.notes %></p>
-  <% end %>
+  </div>
 </div>

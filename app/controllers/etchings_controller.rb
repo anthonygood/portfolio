@@ -5,5 +5,7 @@ class EtchingsController < ApplicationController
 
   def show
     @etching = Etching.includes(:prints).find params[:id]
+    
+    redirect_to :etchings unless @etching.listed
   end
 end
