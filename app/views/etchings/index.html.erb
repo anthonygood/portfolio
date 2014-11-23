@@ -4,7 +4,7 @@
   <% @etchings.each do |etching| %>
     <%= link_to etching do %>
       <div class='etching col-md-4' style="background-image: url(<%= etching.prints.first.medium_url %>)">
-        <h2><%= etching.title %></h2>
+        <!-- <h2><%= etching.title %></h2> -->
 <!--         <p>Prints: <%= etching.prints.count %></p>
         <p>Short: <%= etching.short_description %></p>
         <p>Year: <%= etching.year %></p>
