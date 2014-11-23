@@ -7,7 +7,7 @@ describe 'CSVTranslator' do
   let(:model)   { double("fake model") }
 
   before do
-    allow_any_instance_of(CSVTranslator).to receive(:puts)  # suppress console output
+    silence(CSVTranslator)
     allow(CSV).to receive(:read) do
       [
         %w& title secret redundant_attribute &,
@@ -61,24 +61,41 @@ describe 'CSVTranslator' do
 
   describe "populating database" do
     before do
-      allow(model).to receive(:create)
+      allow(model).to receive(:create_with_prints)
     end
 
     it "can create new records from the CSV" do
-      expect(model).to receive(:create).with({title: "Cats", secret: "the_first_secret"})
-      expect(model).to receive(:create).with({title: "Self-portrait", secret: "unmarked"})
+      expect(model).to receive(:create_with_prints).with({title: "Cats", secret: "the_first_secret", versions: []})
+      expect(model).to receive(:create_with_prints).with({title: "Self-portrait", secret: "unmarked", versions: []})
       subject.write_records_to_db
+    end
+  end
+
+  context "prints" do
+    before do
+      allow(CSV).to receive(:read) do
+        [
+          [ "title", "desc", "versiona", "versionb", "versionc" ],
+          [ "Cats", "description", "black", "blue", "" ],
+          [ "Self-portrait", "unmarked", "", "", "" ]
+        ]
+      end
+    end
+
+    it "can tell me how many versions of an etching there are" do
+      expect(subject.translations.first.prints).to eql ["black", "blue"]
+      expect(subject.translations.last.prints).to eql []
     end
   end
 
   context "<< integration >>" do
     before do
       allow(CSV).to receive(:read) do
-      [
-        %w& title secret redundant_attribute &,
-        %w& Cats the_first_secret 57 &,
-        %w& Self-portrait unmarked 56 &
-      ]
+        [
+          %w& title secret redundant_attribute &,
+          %w& Cats the_first_secret 57 &,
+          %w& Self-portrait unmarked 56 &
+        ]
       end
     end
     let(:subject) { CSVTranslator.new 'file_name', Etching }
@@ -89,7 +106,7 @@ describe 'CSVTranslator' do
 
     describe "errors" do
       before do
-        allow(Etching).to receive(:create).and_raise Exception.new "Record not created"
+        allow(Etching).to receive(:create!).and_raise Exception.new "Record not created"
         subject.write_records_to_db
       end
 

@@ -9,7 +9,7 @@ class Print < ActiveRecord::Base
       increment = incrementor(etching)
       filename << increment if increment
 
-      create(
+      create!(
         etching:       etching,
         large_url:     "/#{filename}.#{filetype}", 
         thumbnail_url: "/#{filename}_thumbnail.#{filetype}",

@@ -10,7 +10,7 @@ class CSVTranslator
   end
 
   def translations  
-    @translations ||= csv.collect do|row| 
+    @translations ||= csv.collect do |row| 
       row.each_with_index.inject(Translation.new invalid_keys) do |hash,(value,index)| 
         hash[column_titles[index].to_sym] = value
         hash  
@@ -21,7 +21,7 @@ class CSVTranslator
   def write_records_to_db
     translations.each do |t|
       begin
-        model.create! t.filter
+        model.create_with_prints t.filter_with_prints
         puts "Successfully created record #{t}"
       rescue Exception => error
         t.reject_with_error(error)
@@ -60,7 +60,11 @@ class CSVTranslator
     end
 
     def filter
-      keep_if { |k, v| !invalid_keys.include? k }
+      select { |k, v| !invalid_keys.include? k }
+    end
+
+    def filter_with_prints
+      filter.merge({versions: prints})
     end
 
     def reject_with_error error
@@ -71,6 +75,9 @@ class CSVTranslator
       self[:error]
     end
 
+    def prints
+      collect {|k, v| v if k.match(/version/i) && !v.blank? }.compact
+    end
   end
 
 end

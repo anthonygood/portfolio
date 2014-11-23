@@ -12,16 +12,13 @@ class Etching < ActiveRecord::Base
     def create_with_prints(attributes={})
       raise ArgumentError, "You must specify how many prints to create" unless attributes[:versions]
 
-      etching = create attributes.except(:versions)
+      etching = create! attributes.except(:versions)
 
-      attributes[:versions].each_with_index do |version, index|
-        if index < 1
-          etching.prints.create_with_image("#{version}")
-        else
-          etching.prints.create_with_image("#{version}_#{index + 1}")
-        end
+      attributes[:versions].each do |version|
+        Print.create_with_image(etching, "jpg", version)
       end
+
+      etching
     end
   end
-  
 end

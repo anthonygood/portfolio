@@ -91,22 +91,40 @@ RSpec.describe Etching, :type => :model do
   end
 
   describe "create_with_prints" do
+    let(:create_with_prints) { Etching.create_with_prints(
+        title: "A Gallant Wind", 
+        versions: ["bizarre", "excellent"] 
+        )}
+
     before do
-      allow(Print).to receive(:create_with_image) { puts "CREATE!" }
+      allow(Print).to receive(:create_with_image)
     end
 
-    it "creates prints", focus: true do
-      expect(Print).to receive(:create_with_image).with("a_gallant_wind_1.jpg")
-      expect(Print).to receive(:create_with_image).with("a_gallant_wind_2.jpg")
+    it "calls #create_with_image on Print", focus: true do
+      expect(Print).to receive(:create_with_image).twice
 
-      etching = Etching.create_with_prints(
-        title: "A Gallant Wind", 
-        versions: ["a_gallant_wind_1.jpg", "a_gallant_wind_2.jpg"] 
-        )
+      create_with_prints
     end
 
     it "raises an exception if you don't specify prints" do
       expect{ Etching.create_with_prints}.to raise_error(ArgumentError)
+    end
+
+    context "<< integration >>" do
+      before do
+        allow(Print).to receive(:create_with_image).and_call_original
+      end
+
+      it "creates Print records" do
+        create_with_prints
+        expect(Etching.first.prints.count).to eq 2
+      end
+
+      it "appends notes to its prints" do
+        create_with_prints
+        expect(Etching.first.prints.first.notes).to eq "bizarre"
+        expect(Etching.first.prints.last.notes).to eq "excellent"
+      end
     end
   end
 
