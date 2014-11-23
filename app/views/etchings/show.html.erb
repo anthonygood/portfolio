@@ -1,12 +1,15 @@
-<div class='container'>
-  <div class='etching col-md-3'>
-    <h2><%= @etching.title %></h2>
+<div class='container' id="show">
+  <div class='description col-md-3'>
+    <h1><%= @etching.title %></h1>
+    <%= link_to 'Back', :etchings %>
     <p>Summary: <%= @etching.short_description %></p>
     <p>Description: <%= @etching.long_description %></p>
   </div>
-
-  <% @etching.prints.each do |print| %>
-    <img src="<%= print.thumbnail_url %>" />
-    <p><%= print.notes %></p>
-  <% end %>
+  
+  <div class='col-md-9'>
+    <% @etching.prints.each do |print| %>
+      <img src="<%= print.medium_url %>" />
+      <p><%= print.notes %></p>
+    <% end %>
+  </div>
 </div>
