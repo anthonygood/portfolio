@@ -8,6 +8,11 @@ class Etching < ActiveRecord::Base
 
   has_many :prints, dependent: :destroy
 
+  scope :landscape, -> { where('width > height') }
+  scope :portrait,  -> { where('height > width') }
+  scope :listed,    -> { where(listed: true)     }
+  scope :unlisted,  -> { where(listed: false)    }  
+
   class << self
     def create_with_prints(attributes={})
       raise ArgumentError, "You must specify how many prints to create" unless attributes[:versions]
@@ -19,6 +24,15 @@ class Etching < ActiveRecord::Base
       end
 
       etching
+    end
+  end
+
+  def orientation
+    return nil unless width && height
+    if width > height
+      "landscape"
+    else
+      "portrait"
     end
   end
 end

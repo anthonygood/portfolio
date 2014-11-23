@@ -1,4 +1,4 @@
-<section class='container'>
+<section class='container' id='index'>
   <h1>Etchings#index</h1>
   <p>Find me in app/views/etchings/index.html.erb</p>
 
@@ -6,7 +6,7 @@
     <%= link_to etching do %>
       <div class='etching col-md-4' style="background-image: url(<%= etching.prints.first.medium_url %>)">
         <h2><%= etching.title %></h2>
-        <p>Prints: <%= etching.prints.count %></p>
+<!--         <p>Prints: <%= etching.prints.count %></p>
         <p>Short: <%= etching.short_description %></p>
         <p>Year: <%= etching.year %></p>
         <p>Long: <%= etching.long_description %></p>
@@ -15,7 +15,7 @@
         <p>Width: <%= etching.width %>mm</p>
         <p>Plates: <%= etching.plates %></p>
         <p>Print run: <%= etching.print_run %></p>
-        <p>Listed: <%= etching.listed %></p>
+        <p>Listed: <%= etching.listed %></p> -->
       </div>
     <% end %>
   <% end %>
