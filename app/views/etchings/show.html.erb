@@ -4,6 +4,7 @@
   </div>
   <div class='description col-md-3'>
     <h1><%= @etching.title %></h1>
+    <p>Price: £<%= number_with_delimiter(@etching.price, :delimiter => ',') %> </p>
     <p>Height: <%= @etching.height %>mm</p>
     <p>Width: <%= @etching.width %>mm</p>
     <% if @etching.plates %>
@@ -11,7 +12,6 @@
     <% end %>
     <p>Print run: <%= @etching.print_run %></p>
     <p><%= @etching.long_description %></p>
-    <p>Price: £<%= @etching.price %> </p>
   </div>
   
   <div class='col-md-8 <%= @etching.orientation %>'>
