@@ -8,7 +8,7 @@
 
 require_relative '../lib/csv_translator'
 
-t = CSVTranslator.new "#{Rails.root}/app/etchings.csv", Etching
+t = CSVTranslator.new "#{Rails.root}/db/etchings.csv", Etching
 t.write_records_to_db
 
 if t.errors?
