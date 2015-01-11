@@ -1,6 +1,12 @@
 <div class='container' id="show">
   <div class='col-md-1'>
     <%= link_to '<', :etchings, :class => 'back-arrow' %>
+    <% if @prev %>
+      <%= link_to '<', @prev %>
+    <% end %>
+    <% if @next %>
+      <%= link_to '>', @next %>
+    <% end %>
   </div>
   <div class='description col-md-3'>
     <h1><%= @etching.title %></h1>

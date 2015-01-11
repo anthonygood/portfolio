@@ -25,6 +25,14 @@ class Etching < ActiveRecord::Base
 
       etching
     end
+
+    def previous(etching)
+      where(["id < ?", etching.id]).last
+    end
+
+    def next(etching)
+      where(["id > ?", etching.id]).first
+    end
   end
 
   def orientation
