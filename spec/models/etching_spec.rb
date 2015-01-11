@@ -90,6 +90,14 @@ RSpec.describe Etching, :type => :model do
     end
   end
 
+  context "association with themes" do
+    let(:association) { Etching.reflect_on_association(:themes) }
+
+    it "is :has_and_belongs_many" do
+      expect(association.macro).to be :has_and_belongs_to_many
+    end
+  end
+
   describe "create_with_prints" do
     let(:create_with_prints) { Etching.create_with_prints(
         title: "A Gallant Wind", 

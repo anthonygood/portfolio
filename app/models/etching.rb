@@ -7,6 +7,7 @@ class Etching < ActiveRecord::Base
   validates :year, { year: true, allow_blank: true }
 
   has_many :prints, dependent: :destroy
+  has_and_belongs_to_many :themes
 
   scope :landscape, -> { where('width > height') }
   scope :portrait,  -> { where('height > width') }
@@ -24,6 +25,14 @@ class Etching < ActiveRecord::Base
       end
 
       etching
+    end
+
+    def previous(etching)
+      where(["id < ?", etching.id]).last
+    end
+
+    def next(etching)
+      where(["id > ?", etching.id]).first
     end
   end
 
