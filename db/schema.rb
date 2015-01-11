@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150110231824) do
+ActiveRecord::Schema.define(version: 20150111233205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 20150110231824) do
     t.integer  "price"
   end
 
+  create_table "etchings_themes", id: false, force: true do |t|
+    t.integer "etching_id"
+    t.integer "theme_id"
+  end
+
+  add_index "etchings_themes", ["etching_id", "theme_id"], name: "index_etchings_themes_on_etching_id_and_theme_id", using: :btree
+
   create_table "prints", force: true do |t|
     t.string   "thumbnail_url"
     t.string   "large_url"
@@ -44,5 +51,11 @@ ActiveRecord::Schema.define(version: 20150110231824) do
   end
 
   add_index "prints", ["etching_id"], name: "index_prints_on_etching_id", using: :btree
+
+  create_table "themes", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
