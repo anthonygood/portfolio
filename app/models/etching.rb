@@ -44,4 +44,8 @@ class Etching < ActiveRecord::Base
       "portrait"
     end
   end
+
+  def css_name
+    title.downcase.gsub(' ', '-')
+  end
 end
