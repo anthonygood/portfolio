@@ -1,11 +1,12 @@
 require 'csv'
 
 class CSVTranslator
-  attr_accessor :csv, :model, :column_titles
+  attr_accessor :csv, :etching_model, :column_titles
 
-  def initialize(file, model)
-    @model = model
-    @csv = CSV.read(file)
+  def initialize(file, etching_model, theme_model)
+    @etching_model = etching_model
+    @theme_model   = theme_model
+    @csv           = CSV.read(file)
     @column_titles = csv.shift
   end
 
@@ -18,14 +19,20 @@ class CSVTranslator
     end
   end
 
-  def write_records_to_db
+  def write_records_to_db(options={})
     translations.each do |t|
       begin
-        model.create_with_prints t.filter_with_prints
-        puts "Successfully created record #{t}"
+        if options[:themes]
+          puts "** create with prints and themes"
+          e = etching_model.create_with_prints_and_themes t.filter_with_prints_and_themes
+        else
+          puts "** create with prints"
+          e = etching_model.create_with_prints t.filter_with_prints
+        end
+        puts "Successfully created record #{e}"
       rescue Exception => error
         t.reject_with_error(error)
-        puts "Error creating record: #{t}"
+        puts "Error creating record: #{t}, #{error}"
       end
     end
   end
@@ -45,7 +52,7 @@ class CSVTranslator
   private
 
   def keys
-    model.new.attributes.keys
+    etching_model.new.attributes.keys
   end
 
   def invalid_keys
@@ -67,6 +74,10 @@ class CSVTranslator
       filter.merge({versions: prints})
     end
 
+    def filter_with_prints_and_themes
+      filter_with_prints.merge({themes: themes})
+    end
+
     def reject_with_error error
       self[:error] = error
     end
@@ -77,6 +88,14 @@ class CSVTranslator
 
     def prints
       collect {|k, v| v if k.match(/version/i) && !v.blank? }.compact
+    end
+
+    def themes
+      begin
+        self[:themes].split(/, ?/)
+      rescue NoMethodError => error
+        nil
+      end
     end
   end
 

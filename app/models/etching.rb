@@ -1,5 +1,4 @@
 class Etching < ActiveRecord::Base
-  attr_accessor :filetype
 
   validates :title, presence: true, string: true
   validates_with StringValidator, attributes: [:long_description, :short_description, :notes], allow_blank: true
@@ -16,12 +15,23 @@ class Etching < ActiveRecord::Base
 
   class << self
     def create_with_prints(attributes={})
-      raise ArgumentError, "You must specify how many prints to create" unless attributes[:versions]
-
+      raise ArgumentError, "You must specify which prints to create" unless attributes[:versions]
       etching = create! attributes.except(:versions)
 
       attributes[:versions].each do |version|
         Print.create_with_image(etching, "jpg", version)
+      end
+
+      etching
+    end
+
+    def create_with_prints_and_themes(attributes={})
+      raise ArgumentError, "You must specify which themes to create" unless attributes[:themes]
+      etching = create_with_prints attributes.except(:themes)
+
+      attributes[:themes].each do |theme|
+        etching.themes << Theme.where(name: theme).first_or_create
+        etching.save
       end
 
       etching

@@ -136,4 +136,35 @@ RSpec.describe Etching, :type => :model do
     end
   end
 
+  describe "create_with_prints_and_themes" do
+    context "<< integration >> " do
+      let(:etching_with_prints_and_themes) { 
+        Etching.create_with_prints_and_themes(
+          title: "A Gallant Wind",
+          versions: ["black"],
+          themes: ["Retro-futurism", "Neon"]
+          )}
+
+      before do
+        allow(Print).to receive(:create_with_image).and_call_original
+        allow(Etching).to receive(:create_with_prints).and_call_original
+        allow(Theme).to receive(:first_or_create)
+      end
+
+      it "calls create_with_prints" do
+        expect(Etching).to receive(:create_with_prints)
+        etching_with_prints_and_themes
+      end
+
+      it "creates saves the record with its themes" do
+        expect{ etching_with_prints_and_themes }.to change{ Theme.count }.by 2
+      end
+
+      it "correctly associates an etching and its themes" do
+        etching_with_prints_and_themes
+        expect(Theme.where(name: "Neon").first.etchings.all).to eq [etching_with_prints_and_themes]
+      end
+    end
+  end
+
 end
