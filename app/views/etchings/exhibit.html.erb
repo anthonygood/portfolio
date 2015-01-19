@@ -1,0 +1,11 @@
+<section class='container text-center' id='exhibit'>
+  <h1>BILL GOOD</h1>
+
+  <% @etchings.each do |etching| %>
+    <%= link_to etching do %>
+      <div class='etching <%= etching.css_name %> col-md-2' style="background-image: url(<%= etching.prints.first.medium_url %>)">
+      </div>
+    <% end %>
+  <% end %>
+
+</section>

@@ -13,8 +13,7 @@ describe 'generate_from_csv' do
 
   before do
     silence(CSVTranslator)
-    silence(Rake)
-    # Application.load_tasks 
+    # Application.load_tasks
     allow(CSV).to receive(:read) do
       [
         %&title,year,paper width (cm),paper height (cm),image width (cm),image height (cm),plates,print_run,signed,short description,long description,notes,Print,Print,Print,Print"&.split(','),
@@ -34,7 +33,7 @@ describe 'generate_from_csv' do
     run_rake_task
   end
 
-  it "writes to the db" do
+  xit "writes to the db" do
     expect(Etching).to receive(:create!).exactly(4).times
     run_rake_task
   end

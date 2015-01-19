@@ -3,8 +3,9 @@ require 'rails_helper'
 require './lib/csv_translator'
 
 describe 'CSVTranslator' do
-  let(:subject) { CSVTranslator.new 'file_name', model }
-  let(:model)   { double("fake model") }
+  let(:etching_model) { double("etching model") }
+  let(:theme_model)   { double("theme model")}  
+  let(:subject) { CSVTranslator.new 'file_name', etching_model, theme_model }
 
   before do
     silence(CSVTranslator)
@@ -15,15 +16,17 @@ describe 'CSVTranslator' do
         %w& Self-portrait unmarked 56 &
       ]
     end
-    allow(model).to receive_message_chain(:new, :attributes, :keys).and_return %w& title secret & 
+    allow(etching_model).to receive_message_chain(:new, :attributes, :keys).and_return %w& title secret & 
   end
 
-  it "is passed a constant corresponding to a Rails model" do
+  it "is passed constants corresponding to Rails models" do
     expect{ subject }.not_to raise_error
   end
 
-  it "raises an error if the constant doesn't exist" do
-    expect{ CSVTranslator.new 'file_name', Marlon }.to raise_error
+  it "raises an error if one of the constants doesn't exist" do
+    expect{ CSVTranslator.new 'file_name', Marlon, Barry }.to raise_error
+    expect{ CSVTranslator.new 'file_name', Etching, Print}.not_to raise_error
+    expect{ CSVTranslator.new 'file_name', Etching, Marlon}.to raise_error
   end
 
 
@@ -59,14 +62,42 @@ describe 'CSVTranslator' do
     end
   end
 
+  describe "themes" do
+    let(:translation) { subject.translations.first }
+    before do
+      allow(CSV).to receive(:read) do
+        [
+          ["title", "themes", "versiona"],
+          ["Cats", "Black and White, Urban Decay, Humour", "black"],
+          ["Self-portrait", "Urban Decay, Neon", "brown"]
+        ]
+      end
+      allow(Theme).to receive(:first_or_create)
+    end
+
+    it "are accessible on each hash" do
+      expect(translation.themes).to eq ["Black and White", "Urban Decay", "Humour"]
+    end
+
+    it "can be filtered with prints" do
+      expected_translation =
+      {
+        title: "Cats",
+        themes: ["Black and White", "Urban Decay", "Humour"],
+        versions: ["black"]
+      }
+      expect(translation.filter_with_prints_and_themes).to eq expected_translation
+    end
+  end
+
   describe "populating database" do
     before do
-      allow(model).to receive(:create_with_prints)
+      allow(etching_model).to receive(:create_with_prints)
     end
 
     it "can create new records from the CSV" do
-      expect(model).to receive(:create_with_prints).with({title: "Cats", secret: "the_first_secret", versions: []})
-      expect(model).to receive(:create_with_prints).with({title: "Self-portrait", secret: "unmarked", versions: []})
+      expect(etching_model).to receive(:create_with_prints).with({title: "Cats", secret: "the_first_secret", versions: []})
+      expect(etching_model).to receive(:create_with_prints).with({title: "Self-portrait", secret: "unmarked", versions: []})
       subject.write_records_to_db
     end
   end
@@ -98,7 +129,7 @@ describe 'CSVTranslator' do
         ]
       end
     end
-    let(:subject) { CSVTranslator.new 'file_name', Etching }
+    let(:subject) { CSVTranslator.new 'file_name', Etching, Theme }
 
     it "powers through the stack" do
       expect{ subject.write_records_to_db }.to change{ Etching.count }.by 2
@@ -106,21 +137,37 @@ describe 'CSVTranslator' do
 
     describe "errors" do
       before do
-        allow(Etching).to receive(:create!).and_raise Exception.new "Record not created"
+        allow(Etching).to receive(:create!).and_raise Exception.new "Record not created!"
         subject.write_records_to_db
       end
 
       it "get collected by each translation" do
-        expect(subject.translations.first[:error].message).to eql("Record not created")
+        expect(subject.translations.first[:error].message).to eql("Record not created!")
       end
 
       it "are accessible by the Translator object" do
         expect(subject.translations_with_errors.count).to eq 2
-        expect(subject.translations_with_errors.first[:error].message).to eql("Record not created")
+        expect(subject.translations_with_errors.first[:error].message).to eql("Record not created!")
       end
 
       it "can be checked" do
         expect(subject.errors?).to be true
+      end
+    end
+
+    context "with themes" do
+      before do
+        allow(CSV).to receive(:read) do
+          [
+            %w& title secret themes &,
+            %w& Cats the_first_secret Celestial,Retro &,
+            %w& Self-portrait unmarked Retro,Futuristic,Blithering &
+          ]
+        end
+      end
+
+      it "populates the DB with etchings and themes" do
+        expect{ subject.write_records_to_db(themes: true) }.to change{ Theme.count }.by 4
       end
     end
   end
