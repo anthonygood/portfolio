@@ -3,9 +3,8 @@ require 'csv'
 class CSVTranslator
   attr_accessor :csv, :etching_model, :column_titles
 
-  def initialize(file, etching_model, theme_model)
+  def initialize(file, etching_model)
     @etching_model = etching_model
-    @theme_model   = theme_model
     @csv           = CSV.read(file)
     @column_titles = csv.shift
   end

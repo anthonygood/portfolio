@@ -151,6 +151,10 @@ RSpec.describe Etching, :type => :model do
         allow(Theme).to receive(:first_or_create)
       end
 
+      it "raises an exception if you don't specify prints" do
+        expect{ Etching.create_with_prints_and_themes}.to raise_error(ArgumentError)
+      end
+
       it "calls create_with_prints" do
         expect(Etching).to receive(:create_with_prints)
         etching_with_prints_and_themes
