@@ -1,0 +1,137 @@
+@import 'colours';
+.swatch, .overlappers {
+  div {
+    width: 100px;
+    height: 100px;
+    float: left;
+    color: rgba(255,255,255,0.5);
+    text-shadow: 1px 1px rgba(0,0,0,0.3);
+    text-align: center;
+    line-height: 100px;
+    h2 { line-height: 50px; }
+
+  &:first-child { background-color: $black; }
+  &:nth-child(2){ background-color: white; }
+  &:nth-child(3){ background-color: $blue; }
+  &:nth-child(4){ background-color: $aquamarine; }
+  &:nth-child(5){ background-color: $turquoise1; } 
+  &:nth-child(6){ background-color: $turquoise2; }
+  &:nth-child(7){ background-color: $lightBlue; }
+  &:nth-child(8){ background-color: $lightGreen; }
+  &:nth-child(9){ background-color: $deepBlue; }
+  &:nth-child(10){ background-color: $neonYellow; }
+  &:nth-child(11){ background-color: $yellow; }
+  &:nth-child(12){ background-color: $orange; }
+  &:nth-child(13){ background-color: $tomato; }
+  &:nth-child(14){ background-color: $burntOrange; }
+  &:nth-child(15){ background-color: $deepRed; } 
+  &:nth-child(16){ background-color: $burntOrange; }
+  &:nth-child(17){ background-color: $red; }
+  &:nth-child(18){ background-color: $deepPink; }
+  &:nth-child(19){ background-color: $pink; } 
+  &:nth-child(20){ background-color: $mutedRed; }
+  &:nth-child(21){ background-color: $green; }
+  &:nth-child(22){ background-color: $broccoli; }
+  &:nth-child(23){ background-color: $deepGreen; }
+  &:nth-child(24){ background-color: $paperHighlight; }
+  &:nth-child(25){ background-color: $paper; } 
+  &:nth-child(26){ background-color: $paperShadow; }
+  &:nth-child(28){ background-color: $warmGrey; }
+  &:nth-child(29){ background-color: $mutedBrick; }
+  &:nth-child(27){ background-color: $silver; } 
+  &:nth-child(30){ background-color: $gold; }
+  &:nth-child(31){ background-color: $mustard; }
+  }
+}
+
+.container.overlappers {
+  padding: 50px 100px;
+  div {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    display: inline-block;
+    margin-left: -85px;
+    transition: 0.5s;
+
+    h2 { 
+      line-height: 100px;
+      color: rgba(white, 0.5);
+      text-shadow: none;
+    }
+    &:first-child { background-color: rgba($black, 0.5); }
+    &:nth-child(2){ background-color: rgba(white, 0.5); }
+    &:nth-child(3){ background-color: rgba($blue, 0.5); }
+    &:nth-child(4){ background-color: rgba($aquamarine, 0.5); }
+    &:nth-child(5){ background-color: rgba($turquoise1, 0.5); } 
+    &:nth-child(6){ background-color: rgba($turquoise2, 0.5); }
+    &:nth-child(7){ background-color: rgba($lightBlue, 0.5); }
+    &:nth-child(8){ background-color: rgba($lightGreen, 0.5); }
+    &:nth-child(9){ background-color: rgba($deepBlue, 0.5); }
+    &:nth-child(10){ background-color: rgba($neonYellow, 0.5); }
+    &:nth-child(11){ background-color: rgba(rgba($yellow, 0.5), 0.5); }
+    &:nth-child(12){ background-color: rgba($orange, 0.5); }
+    &:nth-child(13){ background-color: rgba($tomato, 0.5); }
+    &:nth-child(14){ background-color: rgba($burntOrange, 0.5); }
+    &:nth-child(15){ background-color: rgba($deepRed, 0.5); } 
+    &:nth-child(16){ background-color: rgba($burntOrange, 0.5); }
+    &:nth-child(17){ background-color: rgba($red, 0.5); }
+    &:nth-child(18){ background-color: rgba($deepPink, 0.5); }
+    &:nth-child(19){ background-color: rgba($pink, 0.5); } 
+    &:nth-child(20){ background-color: rgba($mutedRed, 0.5); }
+    &:nth-child(21){ background-color: rgba($green, 0.5); }
+    &:nth-child(22){ background-color: rgba($broccoli, 0.5); }
+    &:nth-child(23){ background-color: rgba($deepGreen, 0.5); }
+    &:nth-child(24){ background-color: rgba($paperHighlight, 0.5); }
+    &:nth-child(25){ background-color: rgba($paper, 0.5); } 
+    &:nth-child(26){ background-color: rgba($paperShadow, 0.5); }
+    &:nth-child(28){ background-color: rgba($warmGrey, 0.5); }
+    &:nth-child(29){ background-color: rgba($mutedBrick, 0.5); }
+    &:nth-child(27){ background-color: rgba($silver, 0.5); } 
+    &:nth-child(30){ background-color: rgba($gold, 0.5); }
+    &:nth-child(31){ background-color: rgba($mustard, 0.5); }
+  }
+}
+
+.dots {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  margin: auto;
+  position: relative;
+  transition: 0.5s;
+  &:hover { 
+    // border-radius: 0;
+    // &::before, &::after { left: 0; }
+  }
+
+  &::before {
+    @include pseudo-dot;
+    left: -50%;
+  }
+  &::after {
+    @include pseudo-dot;
+    left: 50%;
+  }
+}
+
+.dots-large {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0.3;
+
+  header:hover & {
+    @extend .glitz;
+  }
+
+  &.contract {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+    &::before, &::after { left: 0%; }
+  }
+}
