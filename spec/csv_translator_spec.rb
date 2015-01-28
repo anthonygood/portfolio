@@ -4,8 +4,7 @@ require './lib/csv_translator'
 
 describe 'CSVTranslator' do
   let(:etching_model) { double("etching model") }
-  let(:theme_model)   { double("theme model")}  
-  let(:subject) { CSVTranslator.new 'file_name', etching_model, theme_model }
+  let(:subject) { CSVTranslator.new 'file_name', etching_model }
 
   before do
     silence(CSVTranslator)
@@ -24,9 +23,8 @@ describe 'CSVTranslator' do
   end
 
   it "raises an error if one of the constants doesn't exist" do
-    expect{ CSVTranslator.new 'file_name', Marlon, Barry }.to raise_error
-    expect{ CSVTranslator.new 'file_name', Etching, Print}.not_to raise_error
-    expect{ CSVTranslator.new 'file_name', Etching, Marlon}.to raise_error
+    expect{ CSVTranslator.new 'file_name', Marlon }.to raise_error
+    expect{ CSVTranslator.new 'file_name', Etching }.not_to raise_error
   end
 
 
@@ -129,7 +127,7 @@ describe 'CSVTranslator' do
         ]
       end
     end
-    let(:subject) { CSVTranslator.new 'file_name', Etching, Theme }
+    let(:subject) { CSVTranslator.new 'file_name', Etching }
 
     it "powers through the stack" do
       expect{ subject.write_records_to_db }.to change{ Etching.count }.by 2

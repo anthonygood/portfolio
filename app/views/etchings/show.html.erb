@@ -1,26 +1,17 @@
 <div class='container' id="show">
   <div class='col-md-1'>
-    <%= link_to '<', :etchings, :class => 'back-arrow' %>
-    <% if @prev %>
-      <%= link_to '<', @prev %>
-    <% end %>
-    <% if @next %>
-      <%= link_to '>', @next %>
-    <% end %>
-  </div>
-  <div class='description col-md-3'>
-    <h1><%= @etching.title %></h1>
-    <p>Price: £<%= number_with_delimiter(@etching.price, :delimiter => ',') %> </p>
-    <p>Height: <%= @etching.height %>mm</p>
-    <p>Width: <%= @etching.width %>mm</p>
-    <% if @etching.plates %>
-      <p>Plates: <%= @etching.plates %></p>
-    <% end %>
-    <p>Print run: <%= @etching.print_run %></p>
-    <p><%= @etching.long_description %></p>
+    <div class="spine">
+      <%= link_to '', :etchings, class: "back arrow" %>
+      <% if @next %>
+        <%= link_to '', @next, class: "next arrow" %>
+      <% end %>
+      <% if @prev %>
+        <%= link_to '', @prev, class: "prev arrow" %>
+      <% end %>
+    </div>
   </div>
   
-  <div class='col-md-8 <%= @etching.orientation %>'>
+  <div class='col-md-8 col-md-push-3 <%= @etching.orientation %>'>
     <img class='medium' src="<%= @etching.prints.first.medium_url %>" />
     <% if @etching.prints.count > 1 %>
       <div class="thumbnails">
@@ -32,5 +23,26 @@
       </div>
     <% end %>
 
+  </div>
+
+  <div class='description col-md-3 col-md-pull-8'>
+    <h2><%= @etching.title %></h2>
+    <ul>
+      <li>
+        <strong>Price:</strong> £<%= number_with_delimiter(@etching.price, :delimiter => ',') %> (unframed)
+      </li>
+      <li>
+        <strong>Size:</strong> <%= "#{@etching.height} x #{@etching.width} mm"%>
+      </li>
+      <% if @etching.plates %>
+        <li>
+          <strong>Plates:</strong> <%= @etching.plates %>
+        </li>
+      <% end %>
+      <li>
+        <strong>Print run:</strong> <%= @etching.print_run %>
+      </li>
+      <p><%= @etching.long_description %></p>
+    </ul>
   </div>
 </div>

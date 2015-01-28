@@ -1,0 +1,53 @@
+$black: #030406;
+$red: #EE100B;
+$yellow: #E7E81F;
+$orange: #FE9233;
+$blue: #608DED;
+$green: #619835;
+$pink: #F182A7;
+$aquamarine: #2A57BC;
+$turquoise1: #64A9A4;
+$turquoise2: #4196B3;
+$deepRed: #A52733;
+$deepGreen: #014C32;
+$deepBlue: #162161;
+$deepPink: #DE477E;
+$burntOrange: #DB563F;
+$warmGrey: #958C7C;
+$paper: #EFEEF4;
+$paperHighlight: #FEFDFE;
+$paperShadow: #C0BFC5;
+$lightBlue: #5B8AC7;
+$lightGreen: #40B7A6;
+$tomato: #D34D2D;
+$broccoli: #247C40;
+$mutedBlue: #3B5868;
+$mutedRed: #9E6779;
+$mutedBrick: #7A8076;
+$neonYellow: #E7F710;
+$gold: #A69260;
+$silver: #9EA5AF;
+$mustard: #D2D94E;
+
+@mixin pseudo-dot {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transition: 1s;
+}
+
+@mixin dots($a, $b, $c) {
+  background-color: rgba($b, 0.6);
+  &::before { background-color: rgba($a, 0.6); }
+  &::after  { background-color: rgba($c, 0.6); }
+}
+
+.ink       { @include dots($paper, $warmGrey, $mutedBrick); }
+.neon      { @include dots($red, $neonYellow, $green); }
+.turquoise { @include dots($turquoise2, $lightBlue, $lightGreen); }
+.pink      { @include dots($burntOrange, $deepPink, $pink); }
+.green     { @include dots($green, $broccoli, $deepGreen); }
+.glitz     { @include dots($gold, $silver, $paper); }

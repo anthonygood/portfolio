@@ -1,0 +1,43 @@
+@import 'colours';
+
+header {
+  margin-top: 10px;
+  margin-bottom: 40px;
+
+  .big-name { 
+    display: inline-block;
+    position: relative;
+
+    ul {
+      position: absolute;
+      left: 100%;
+      top: 0;
+      white-space: nowrap;
+      text-align: left;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  }
+
+  h1 { 
+    font-size: 12vw; 
+    line-height: 190px;
+    color: $silver;
+    display: inline-block;
+    margin: 0;
+    cursor: default;
+  }
+
+  &.blue {
+
+  }
+
+  &.pink {
+
+  }
+
+  &.neon {
+
+  }
+}
