@@ -3,7 +3,16 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'ready page:load', ->
-  $('.thumbnail-link > img').click ->
-    $med = $('.medium')
-    $med.css('width', $med.css('width'))
+  $med = $('.medium')
+  orientation = $med.data('orientation')
+  lock = if $med.data('orientation') == 'landscape'
+    'height'
+  else
+    'width'
+
+  $(window).resize -> 
+    $med.css(lock, '')
+
+  $('.thumbnail-link > img').click (e) ->
+    $med.css("#{lock}", $med.css(lock))
         .attr('src', $(this).attr('src'))

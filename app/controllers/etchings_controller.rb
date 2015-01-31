@@ -9,7 +9,9 @@ class EtchingsController < ApplicationController
   end
 
   def show
-    @etching = Etching.includes(:prints).find params[:id]
+    @etching = Etching.includes(:prints, themes: [etchings: :prints]).find params[:id]
+    @themes  = @etching.themes
+
     @next    = Etching.next @etching
     @prev    = Etching.previous @etching
     

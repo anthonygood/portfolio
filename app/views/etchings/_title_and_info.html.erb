@@ -1,0 +1,17 @@
+<h2><%= @etching.title %></h2>
+<ul>
+  <li>
+    <strong>Price:</strong> £<%= number_with_delimiter(@etching.price, :delimiter => ',') %> (unframed)
+  </li>
+  <li>
+    <strong>Size:</strong> <%= "#{@etching.height} x #{@etching.width} mm"%>
+  </li>
+  <% if @etching.plates %>
+    <li>
+      <strong>Plates:</strong> <%= @etching.plates %>
+    </li>
+  <% end %>
+  <li>
+    <strong>Print run:</strong> <%= @etching.print_run %>
+  </li>
+</ul>

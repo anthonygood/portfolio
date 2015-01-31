@@ -50,7 +50,11 @@
   }
 }
 
-.spine { width: 0; }
+.spine { 
+  width: 0;
+  position: relative;
+  left: 50%;
+}
 
 .back.arrow {
   @include left-triangle(rgba($paperShadow, 0.4), 45);

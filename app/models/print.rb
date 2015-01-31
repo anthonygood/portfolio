@@ -11,9 +11,9 @@ class Print < ActiveRecord::Base
 
       create!(
         etching:       etching,
-        large_url:     "/#{filename}.#{filetype}",
-        medium_url:    "/#{filename}_med.#{filetype}",
-        thumbnail_url: "/#{filename}_thumbnail.#{filetype}",
+        large_url:     "/large/#{filename}.#{filetype}",
+        medium_url:    "/med/#{filename}_med.#{filetype}",
+        thumbnail_url: "/thumbs/#{filename}_thumbnail.#{filetype}",
         notes:         notes
         )
     end
