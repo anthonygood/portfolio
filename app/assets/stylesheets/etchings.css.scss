@@ -1,20 +1,18 @@
-// Place all the styles related to the Etchings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,300");
+@import 'variables';
 @import 'colours';
+
+$captionGutter: 5px;
 
 .etching {
   text-transform: capitalize;
-
-  p {
-    word-break: break-word;
-  }
+  p { word-break: break-word; }
 }
 
 .spacer {
   margin-top: 100%;
 }
+
 .etching-image {
   position: absolute;
   top: 0;
@@ -25,39 +23,45 @@
   background-position: center;
 }
 
-@media (max-width: 991px) {
-  // .etching { 
-  //   height: 35vw;
-  //   width: 35vw; 
-  // }
-  .description { clear: both; }
-}
-
 #show {
   color: $silver;
   h2 {
     font-size: 42px;
     margin-bottom: 0;
     margin-top: 4vh;
-    // color: $mutedBrick;
   }
 
   p {
     font-size: 20px;
     font-weight: 100;
-    // color: rgb(100, 100, 100);
   }
 
-  img {
-    margin-top: 5vh;
+  .description {
+    p { margin-top: 25px; }
+  }
+
+  img.medium {
     max-width: 100%;
     max-height: 90vh;
   }
 
-  .landscape .thumbnails {
-    overflow-y: hidden;
-    overflow-x: auto;
-    white-space: nowrap;
+  .preview-container { margin-top: 4vh; }
+
+  .thumbnails { margin-top: 15px; }
+
+  .landscape {
+    .caption { float: left; }
+    .thumbnails {
+      max-width: 100%;
+      overflow-y: hidden;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+
+  .portrait {
+    .thumbnails, .thumbnail-link:first-child { margin-top: 0; }
+    .thumbnail-link { margin-top: 15px; }
   }
 
   .thumbnail-link {
@@ -71,9 +75,14 @@
   .landscape .thumbnail-link:first-child img { margin-left: 0; }
 
   .portrait {
-    .medium {
+    .image-container { 
       float: left;
+      position: relative;
+      max-width: 460px;
+
+      @media(min-width: $screen-lg) { max-width: 560px; }
     }
+    .thumbnail-link { display: block; }
   }
 }
 
@@ -94,5 +103,43 @@ ul {
   .etching {
     padding-top: 20%;
     height: auto;
+  }
+}
+
+.mobile-info {
+  display: none;
+}
+
+// TABLET AND BELOW
+@media (max-width: 991px) {
+
+  #show {
+    p { font-size: 26px; }
+
+    .landscape, .portrait {
+      text-align: center;
+
+       .image-container {
+        float: none;
+        text-align: center;
+        display: block;
+        margin: auto;
+      }
+
+      .description { 
+        clear: both;
+      }
+
+      img.medium { max-height: none; }
+      .thumbnails { margin-top: 15px; }
+      .thumbnail-link { display: inline; }
+    }
+  }
+
+  .desktop-info { display: none; }
+  .mobile-info { 
+    display: block;
+    text-align: center;
+    ul { font-size: 18px; }
   }
 }

@@ -9,10 +9,18 @@
         <%= link_to '', @prev, class: "prev arrow" %>
       <% end %>
     </div>
+    <div class='mobile-info'>
+      <%= render 'title_and_info' %>
+    </div>
+
   </div>
   
-  <div class='col-md-8 col-md-push-3 <%= @etching.orientation %>'>
-    <img class='medium' src="<%= @etching.prints.first.medium_url %>" />
+  <div class='col-md-8 col-md-push-3 preview-container <%= @etching.orientation %>'>
+    <div class='image-container'>
+      <img class='medium' src="<%= @etching.prints.first.large_url %>" data-orientation="<%= @etching.orientation %>" />
+        <div class="caption">
+      </div>
+    </div>
     <% if @etching.prints.count > 1 %>
       <div class="thumbnails">
         <% @etching.prints.each do |print| %>
@@ -25,24 +33,10 @@
 
   </div>
 
-  <div class='description col-md-3 col-md-pull-8'>
-    <h2><%= @etching.title %></h2>
-    <ul>
-      <li>
-        <strong>Price:</strong> £<%= number_with_delimiter(@etching.price, :delimiter => ',') %> (unframed)
-      </li>
-      <li>
-        <strong>Size:</strong> <%= "#{@etching.height} x #{@etching.width} mm"%>
-      </li>
-      <% if @etching.plates %>
-        <li>
-          <strong>Plates:</strong> <%= @etching.plates %>
-        </li>
-      <% end %>
-      <li>
-        <strong>Print run:</strong> <%= @etching.print_run %>
-      </li>
-      <p><%= @etching.long_description %></p>
-    </ul>
+  <div class='description col-md-3 col-md-pull-8 col-md-offset-0 col-sm-offset-1 col-sm-10'>
+    <div class='desktop-info'>
+      <%= render 'title_and_info' %>
+    </div>
+    <p><%= @etching.long_description.try :html_safe %></p>
   </div>
 </div>
