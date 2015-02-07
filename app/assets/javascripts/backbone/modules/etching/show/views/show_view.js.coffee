@@ -9,3 +9,4 @@
 
     onShow: ->
       @navigation.show new Show.NavigationView(model: @model)
+      @preview.show    new Show.Preview(model: @model)
