@@ -7,12 +7,7 @@
     mainRegion:   "#main-region"
     footerRegion: "#footer"
 
-  App.addInitializer ->
-    App.module("Splash").start()
-    App.module("Footer").start()
-
   App.on "start", ->
-    console.log "starting"
     Backbone.history.start(pushState: true) if Backbone.history
 
   App

@@ -6,8 +6,7 @@
 
   class Index.Controller extends Marionette.Controller
     index: ->
-      view        = App.mainRegion.show new Index.SplashView()
-      window.view = view
+      App.mainRegion.show new Index.SplashView()
 
   Index.addInitializer ->
     new Index.Router controller: new Index.Controller()
