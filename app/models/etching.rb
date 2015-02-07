@@ -58,4 +58,8 @@ class Etching < ActiveRecord::Base
   def css_name
     title.downcase.gsub(' ', '-')
   end
+
+  def as_json(options)
+    super(options).merge "orientation" => orientation
+  end
 end
