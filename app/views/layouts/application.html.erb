@@ -9,10 +9,20 @@
 <body id="application">
 
 <!-- <row> -->
+<%= yield %>
 
-  <%= yield %>
+<header id="header-region"></header>
+<section id="main-region"></section>
+<footer id="footer"></footer>
+
+<%= javascript_tag do %>
+  $(function(){
+    BG.start(); 
+  });
+<% end %>
 
 <!-- </row> -->
 
 </body>
+<%= yield :script %>
 </html>
