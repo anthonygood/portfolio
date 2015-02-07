@@ -6,10 +6,6 @@
     events:
       "click a": "goToShow"
 
-    onShow: ->
-      console.log @model.get('title')
-
     goToShow: (e) ->
       e.preventDefault()
-      console.log "goToShow #{@model.get('id')}"
       Backbone.history.navigate("/#{@model.get('id')}", trigger: true)

@@ -1,5 +1,3 @@
 <% content_for :script do %>
-  <%= javascript_tag do %>
-    BG.Data.etchings.add(<%= raw json_escape @etchings.to_json(include: :prints) %>);
-  <% end %>
+
 <% end %>
