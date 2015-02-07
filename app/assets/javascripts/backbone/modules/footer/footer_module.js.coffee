@@ -1,4 +1,4 @@
-@EtchingsApp.module "Footer", (Footer, EtchingsApp) ->
+@BG.module "Footer", (Footer, App) ->
 
   @startWithParent = false
 

@@ -1,5 +1,4 @@
-@EtchingsApp = do (Backbone, Marionette) ->
-  console.log "app setup"
+@BG = do (Backbone, Marionette) ->
 
   App = new Marionette.Application
 

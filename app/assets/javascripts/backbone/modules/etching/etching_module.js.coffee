@@ -1,1 +1,1 @@
-@EtchingsApp.module "Etching", (Etching, EtchingsApp) ->  
+@BG.module "Etching", (Etching, App) ->  
