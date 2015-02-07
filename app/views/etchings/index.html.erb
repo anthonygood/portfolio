@@ -1,9 +1,5 @@
-<header id="header-region"></header>
-<section id="main-region"></section>
-<footer id="footer"></footer>
-
-<%= javascript_tag do %>
-  $(function(){  
-    EtchingsApp.start(); 
-  });
+<% content_for :script do %>
+  <%= javascript_tag do %>
+    BG.Data.etchings.add(<%= raw json_escape @etchings.to_json(include: :prints) %>);
+  <% end %>
 <% end %>
