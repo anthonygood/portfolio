@@ -1,4 +1,4 @@
-@EtchingsApp.module "Etching.Index", (Index, EtchingsApp) ->
+@BG.module "Etching.Index", (Index, App) ->
 
   class Index.Router extends Marionette.AppRouter
     appRoutes:
@@ -6,7 +6,8 @@
 
   class Index.Controller extends Marionette.Controller
     index: ->
-      EtchingsApp.mainRegion.show new Index.SplashView()
+      view        = App.mainRegion.show new Index.SplashView()
+      window.view = view
 
   Index.addInitializer ->
     new Index.Router controller: new Index.Controller()
