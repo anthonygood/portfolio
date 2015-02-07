@@ -16,4 +16,6 @@
 //= require lib/underscore
 //= require lib/backbone
 //= require lib/backbone.marionette
+//= require backbone/app
+//= require_tree ./backbone/modules/etching
 //= require_tree .
