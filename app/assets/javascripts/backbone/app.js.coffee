@@ -13,6 +13,6 @@
 
   App.on "start", ->
     console.log "starting"
-    Backbone.history.start() if Backbone.history
+    Backbone.history.start(pushState: true) if Backbone.history
 
   App
