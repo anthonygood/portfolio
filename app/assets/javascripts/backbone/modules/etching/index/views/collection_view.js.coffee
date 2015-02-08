@@ -2,6 +2,3 @@
 
   class Index.SplashView.CollectionView extends Marionette.CollectionView
     childView: Index.SplashView.ItemView
-
-    onShow: ->
-      "Showing Index.SplashView.Collection"

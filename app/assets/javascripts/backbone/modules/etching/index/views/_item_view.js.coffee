@@ -2,7 +2,6 @@
 
   class Index.SplashView.ItemView extends Marionette.ItemView
     template: "etching/index/templates/item"
-    className: "ragged"
     events:
       "click a": "goToShow"
 
