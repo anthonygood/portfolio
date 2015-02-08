@@ -13,3 +13,4 @@
                                   model: prints.first()
                                   collection: prints
                                   childView: Show.ThumbnailView
+                                  orientation: @model.get('orientation')
