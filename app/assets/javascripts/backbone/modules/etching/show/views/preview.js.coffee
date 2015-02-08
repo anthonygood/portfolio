@@ -6,17 +6,16 @@
     collectionEvents:
       "thumbnail:select": "embiggenThumbnail"
 
-    initialize: (options) ->
-      @lock = @getLock(options.orientation)
-
     onShow: ->
-      enclose = (lock, callback) ->
-        return -> callback @[lock]
+      @lockPreviewAccordingToOrientation()
+      @$(".thumbnails").hide() unless @collection.length > 1
 
-      @$('.medium').load enclose(@lock, @setLockValue) 
+    lockPreviewAccordingToOrientation: ->
+      @lock = @getLock(@options.orientation)
+      enclose = (lock, view) ->
+        return -> view.fixedLength = @[lock]
 
-    setLockValue: (val) =>
-      @fixedLength = val
+      @$('.medium').load enclose(@lock, @)
 
     getLock: (orientation) ->
       if orientation == "landscape" then "height" else "width"
