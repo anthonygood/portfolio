@@ -7,22 +7,11 @@
       "thumbnail:select": "embiggenThumbnail"
 
     onShow: ->
-      @lockPreviewAccordingToOrientation()
+      @lock = new Show.Lock(@$('.medium'), @options.orientation)
       @$(".thumbnails").hide() unless @collection.length > 1
 
-    lockPreviewAccordingToOrientation: ->
-      @lock = @getLock(@options.orientation)
-      enclose = (lock, view) ->
-        return -> view.fixedLength = @[lock]
-
-      @$('.medium').load enclose(@lock, @)
-
-    getLock: (orientation) ->
-      if orientation == "landscape" then "height" else "width"
-
     onRender: ->
-      if @fixedLength
-        @$('.medium').css @lock, @fixedLength
+      @lock.applyLock(@$('.medium')) if @lock
 
     embiggenThumbnail: (model) ->
       @model = model
