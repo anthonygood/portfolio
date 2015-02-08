@@ -13,6 +13,7 @@
 
     show: (id) ->
       etching = App.Data.etchings.find id: @process(id)
+      App.headerRegion.empty()
       App.mainRegion.show new Show.ShowView(model: etching)
 
     process: (id) ->

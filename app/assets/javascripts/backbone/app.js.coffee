@@ -3,7 +3,7 @@
   App = new Marionette.Application
 
   App.addRegions
-    headerRegion: "#header"
+    headerRegion: "#header-region"
     mainRegion:   "#main-region"
     footerRegion: "#footer"
 

@@ -6,6 +6,7 @@
 
   class Index.Controller extends Marionette.Controller
     index: ->
+      App.headerRegion.show new Index.HeaderView()
       App.mainRegion.show new Index.SplashView()
 
   Index.addInitializer ->
