@@ -1,14 +1,6 @@
 <div class='image-container'>
-  <img class='medium' src="<%= @prints[0].large_url %>" data-orientation="<%= @orientation %>" />
+  <img class='medium' src="<%= @large_url %>" data-orientation="<%= @orientation %>" />
 </div>
 
-<% if @prints.length > 1: %>
-  <div class="thumbnails">
-
-    <% for print in @prints: %>
-      <a class="thumbnail-link">
-        <img src="<%= print.medium_url %>" />
-      </a>
-    <% end %>
-  </div>
-<% end %>
+<div class="thumbnails">
+</div>

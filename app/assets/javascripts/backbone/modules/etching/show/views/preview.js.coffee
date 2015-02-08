@@ -1,7 +1,6 @@
 @BG.module "Etching.Show", (Show, App) ->
 
-  class Show.Preview extends Marionette.ItemView
+  class Show.Preview extends Marionette.CompositeView
     template: "etching/show/templates/preview"
+    childViewContainer: ".thumbnails"
 
-    onShow: ->
-      console.log "Show.Preview.onShow()"
