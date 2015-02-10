@@ -1,0 +1,20 @@
+<div class='container' id="show">
+
+  <div class='col-md-1'>
+    <div id="navigation" class="spine"></div>
+    <div class='mobile-info'>
+      <%- JST['backbone/modules/etching/show/templates/_title_and_info'](@) %>
+    </div>
+  </div>
+
+  <div id="preview" class='col-md-8 col-md-push-3 preview-container <%= @orientation %>'></div>
+
+  <div id="info" class='description col-md-3 col-md-pull-8 col-md-offset-0 col-sm-offset-1 col-sm-10'>
+    <div class='desktop-info'>
+      <%- JST['backbone/modules/etching/show/templates/_title_and_info'](@) %>
+    </div>
+      <p><%= @long_description %></p>
+    </div>
+  </div>
+
+</div>

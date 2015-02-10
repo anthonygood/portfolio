@@ -1,27 +1,3 @@
-<header class="text-center">
-  <div class="dots dots-large ink"></div>
-  <div class="big-name">
-    <h1>
-      BILL GOOD
-    </h1>
-    <ul>
-      <li><a>About Bill Good</a></li>
-      <li><a>About Etching</a></li>
-      <li><a>Inquire</a></li>
-    </ul>
-  </div>
-</header>
-<section class='container text-center' id='index'>
+<% content_for :script do %>
 
-  <% @etchings.each do |etching| %>
-    <%= link_to etching do %>
-      <div class='etching <%= etching.orientation %> col-md-4 col-sm-6 col-xs-12'>
-        <div class='spacer'></div>
-        <div class='etching-image' style='background-image: url("<%= etching.prints.first.medium_url %>")'>
-
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-
-</section>
+<% end %>
