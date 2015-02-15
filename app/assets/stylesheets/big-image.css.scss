@@ -1,0 +1,15 @@
+.big-image {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.big-name-container {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  padding: 25px;
+  background-color: rgba(255,255,255,0.6);
+}

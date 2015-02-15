@@ -1,11 +1,23 @@
 @BG.module "Etching.Index", (Index, App) ->
 
-  class Index.HeaderView extends Marionette.LayoutView
+  class Index.HeaderView extends Marionette.ItemView
     template: "etching/index/templates/header"
-    className: "text-center"
-    regions:
-      bigImage: "#big-image-container"
-      bigName: "#big-name-container"
+    className: "big-image text-center"
+    events:
+      "click": "goToEtching"
+      "click .big-name-container": "nothing" 
 
     onShow: ->
-      @bigName.show new Index.BigNameView()
+      print = @randomPrint @model.get('prints')
+      @$el.css "background-image", "url('#{print.large_url}')"
+
+    goToEtching: (e) ->
+      e.preventDefault()
+      Backbone.history.navigate "/#{@etching.get('id')}", trigger: true
+
+    nothing: (e) ->
+      e.preventDefault()
+      e.stopPropagation()
+
+    randomPrint: (prints) ->
+      prints[ _.random (prints.length - 1) ]
