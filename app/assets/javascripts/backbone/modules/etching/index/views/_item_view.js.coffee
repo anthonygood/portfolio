@@ -6,7 +6,8 @@
       "click a": "goToShow"
 
     onShow: ->
-      @$('.etching-image').css("background-image", @background())
+      src = @model.backgroundImageUrl @model.printUrl()
+      @$('.etching-image').css "background-image", src
 
     goToShow: (e) ->
       e.preventDefault()

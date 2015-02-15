@@ -11,9 +11,8 @@
 
     onShow: ->
       print = @randomPrint @model.get('prints')
-      @$el.css "background-image", "url('#{print.large_url}')"
+      @$el.css "background-image", @model.backgroundImageUrl(print.large_url)
       @headerShine()
-
 
     goToEtching: (e) ->
       e.preventDefault()
