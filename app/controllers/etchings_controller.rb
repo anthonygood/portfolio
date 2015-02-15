@@ -1,11 +1,44 @@
 class EtchingsController < ApplicationController
 
-  ORDER = [
-    15, 10, 5
+  EXHIBIT_ORDER_BY_ID = [
+    20,
+    37,
+    5,
+    6,
+    47,
+    48,
+    25,
+    11,
+    13,
+    14,
+    15,
+    17,
+    18,
+    19,
+    22,
+    23,
+    26,
+    27,
+    30,
+    32,
+    33,
+    36,
+    43,
+    45,
+    50,
+    51,
+    53,
+    54,
+    55,
+    5,
+    2,
+    8,
+    10
   ]
 
   def index
-    @etchings = Etching.includes(:prints).all
+    @etchings = exhibition_order
+    @themes   = Theme.includes(:etchings).all
   end
 
   def show
@@ -23,12 +56,12 @@ class EtchingsController < ApplicationController
   end
 
   private
-
-  def arbitrary_order(ids)
-    Etching.find(ids)
-           .index_by(&:id)
-           .slice(*ids)
-           .values
+  def exhibition_order
+    all_etchings    = Etching.listed.includes(:prints, themes: [etchings: :prints]).all
+    best_etchings   = all_etchings.index_by(&:id)
+                                  .slice(*EXHIBIT_ORDER_BY_ID)
+                                  .values
+    rejects = all_etchings - best_etchings
+    best_etchings + rejects
   end
-
 end
