@@ -1,4 +1,5 @@
 @import 'colours';
+@import 'variables';
 
 header {
   margin-top: 10px;
@@ -42,4 +43,14 @@ header {
   &.neon {
 
   }
+
+  @media(max-width: $screen-sm) {
+    .big-name ul {
+      margin-top: 15px;
+      position: static;
+      text-align: center;
+    }
+    h1 { font-size: 20vw; }
+  }
 }
+

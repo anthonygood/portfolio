@@ -99,7 +99,7 @@
   border-radius: 50px;
   margin: auto;
   position: relative;
-  transition: 0.5s;
+  transition: 3s;
   &:hover { 
     // border-radius: 0;
     // &::before, &::after { left: 0; }
@@ -122,9 +122,9 @@
   position: absolute;
   left: 50%;
   margin-left: -100px;
-  opacity: 0.3;
+  opacity: 0.45;
 
-  header:hover & {
+  .big-name-container:hover & {
     @extend .glitz;
   }
 
