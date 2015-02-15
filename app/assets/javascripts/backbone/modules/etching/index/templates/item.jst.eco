@@ -1,9 +1,9 @@
 <a href="/<%= @id %>">
   <div class="etching portrait col-md-4 col-sm-6 col-xs-12">
     <div class="spacer"></div>
-    <div class="etching-image" style="background-image: url(<%= @prints[0].medium_url %>)">
+    <div class='etching-image'>
     </div>
-    ETCHING
+    <%= @prints[0].medium_url %>
   </div>
 </a>
 

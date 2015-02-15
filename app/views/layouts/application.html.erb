@@ -2,13 +2,12 @@
 <html>
 <head>
   <title>Bill Good</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body id="application">
 
-<!-- <row> -->
 <%= yield %>
 
 <header id="header-region"></header>
@@ -21,13 +20,13 @@
   });
 <% end %>
 
-<!-- </row> -->
-
 </body>
 <%= yield :script %>
 
 <%= javascript_tag do %>
 
-  BG.Data.etchings.add(<%= raw json_escape @etchings.to_json(include: :prints) %>);
+  BG.Data.etchings.add(<%= raw json_escape @etchings.to_json(include: [:prints, :themes]) %>);
+  BG.Data.themes = new Backbone.Collection(<%= raw json_escape @themes.to_json(include: { etchings: {only: :id} }) %>);
+
 <% end %>
 </html>

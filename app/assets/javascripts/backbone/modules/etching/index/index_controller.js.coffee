@@ -6,8 +6,8 @@
 
   class Index.Controller extends Marionette.Controller
     index: ->
-      App.headerRegion.show new Index.HeaderView()
-      App.mainRegion.show new Index.SplashView()
+      App.headerRegion.show new Index.HeaderView(model: App.Data.etchings.exhibit())
+      App.mainRegion.show new Index.CollectionView(collection: App.Data.etchings)
 
   Index.addInitializer ->
     new Index.Router controller: new Index.Controller()
