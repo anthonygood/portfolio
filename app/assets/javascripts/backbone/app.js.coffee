@@ -1,4 +1,7 @@
 @BG = do (Backbone, Marionette) ->
+  $.ajaxSetup
+    headers:
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
 
   App = new Marionette.Application
 
