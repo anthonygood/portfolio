@@ -1,0 +1,15 @@
+<div class="container">
+  <div class='col-md-1'>
+    <div id="navigation" class="spine">
+      <a class="back arrow" href="/"></a>
+    </div>
+  </div>
+  <div class="col-md-6">
+
+    <div class="col-sm-8 col-sm-offset-4">
+      <h1><span>Thanks</span></h1>
+      <p>Thank you for contacting us. We'll be in touch with you as soon as we can.</p>
+      <p>While you wait, <a href="/">have a look at some more etchings?</a></p>
+    </div>
+  </div>
+</div>

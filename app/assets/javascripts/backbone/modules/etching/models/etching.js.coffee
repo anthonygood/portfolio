@@ -6,5 +6,9 @@
     printUrl: (index=0) ->
       @get('prints')[index].medium_url
 
-    backgroundImageUrl: (url)->
+    backgroundImageUrl: (url) ->
       ['url("', url, '")'].join('')
+
+    randomPrint: ->
+      prints = @get('prints')
+      prints[ _.random (prints.length - 1) ]
