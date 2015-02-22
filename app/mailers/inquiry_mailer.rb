@@ -1,5 +1,5 @@
 class InquiryMailer < ActionMailer::Base
-  default from: 'notifications@billgood.co.uk'
+  default from: 'anthony@billgood.co.uk'
   default to: "good.anthony@gmail.com, hayley.k.sothinathan@gmail.com"
  
   def notification(inquiry)
