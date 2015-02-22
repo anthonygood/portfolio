@@ -33,7 +33,7 @@ body {
 #application {
   background-color: $paperHighlight;
   h1, h2 {
-    font-family: Oswald;
+    font-family: Oswald, arial, sans-serif;
   }
   a, a:link, a:visited { color: $silver; }
 }
