@@ -6,6 +6,7 @@ class Etching < ActiveRecord::Base
   validates :year, { year: true, allow_blank: true }
 
   has_many :prints, dependent: :destroy
+  has_many :inquiries
   has_and_belongs_to_many :themes
 
   scope :landscape, -> { where('width > height') }

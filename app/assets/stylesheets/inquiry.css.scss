@@ -1,0 +1,40 @@
+@import 'colours';
+@import 'variables';
+
+#inquiry {
+  height: 100%;
+  background-size: cover;
+
+  h1 {
+    margin: 20px 0; 
+    font-size: 80px;
+  }
+
+  .note { display: none; }
+
+  textarea {
+    height: 20vh;
+  }
+
+  .flash {
+    background-color: rgba(250, 0, 0, 0.5);
+    color: white;
+    display: none;
+  }
+}
+
+#item-info {
+  margin-top: 125px;
+
+  .thumbnail {
+    border: none;
+    background-color: transparent;
+    img { max-height: 400px; }
+  }
+}
+
+@media(max-width: $screen-md) {
+  #item-info {
+    margin-top: 10px;
+  }
+}

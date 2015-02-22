@@ -6,14 +6,14 @@
     events:
       "click": "goToEtching"
       "click .big-name-container": "nothing"
+      "click a": "inquire"
 
     SCHEMES = "neon turquoise pink green glitz".split(" ")
 
     onShow: ->
       print = @randomPrint @model.get('prints')
-      @$el.css "background-image", "url('#{print.large_url}')"
+      @$el.css "background-image", @model.backgroundImageUrl(print.large_url)
       @headerShine()
-
 
     goToEtching: (e) ->
       e.preventDefault()
@@ -35,3 +35,6 @@
       @$('.dots').addClass(colour).removeClass(@prevColour)
       @prevColour = colour
       @headerShine()
+
+    inquire: (e) ->
+      Backbone.history.navigate "/inquire", trigger: true

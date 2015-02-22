@@ -17,6 +17,19 @@
 @import "bootstrap";
 @import "colours";
 
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-size: cover;
+}
+
+#main-region {
+  height: 100%;
+}
+
 #application {
   background-color: $paperHighlight;
   h1, h2 {

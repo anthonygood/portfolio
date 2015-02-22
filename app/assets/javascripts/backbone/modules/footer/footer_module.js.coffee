@@ -7,5 +7,4 @@
       Footer.Show.Controller.showFooterView()
 
   Footer.on "start", ->
-    console.log "FooterModule started..."
     API.show()

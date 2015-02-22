@@ -1,0 +1,3 @@
+<div class="thumbnail">
+  <img src="<%= @prints[0].medium_url %>" />
+</div>
