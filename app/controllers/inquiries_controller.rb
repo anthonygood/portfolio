@@ -1,6 +1,8 @@
 class InquiriesController < ApplicationController
   def create
-    Inquiry.create inquiry_params
+    inquiry = inquiry_params
+    Inquiry.create inquiry
+    InquiryMailer.notification(inquiry).deliver
     render nothing: true, status: 200
   end
 
