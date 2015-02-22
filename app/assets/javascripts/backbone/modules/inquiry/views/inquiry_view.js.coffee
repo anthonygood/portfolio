@@ -19,12 +19,11 @@
 
     submitInquiry: (e) ->
       e.preventDefault()
-      console.log "inquire, sir"
-      console.log e
       data = @parseForm e.target
-      console.log data
-      @model.set(data).save()
-      # false
+      @model.set(data).save {},
+        dataType: "text" # don't expect JSON response
+        success: (e) => @saved(e)
+        error:   (e) => @err(e)
 
     parseForm: ->
       {
@@ -34,4 +33,10 @@
         notes: @ui.message.val()
       }
 
+    saved: (e) ->
+      console.log "SAVED, ", e
+      App.vent.trigger "inquiry:success"
 
+    err: (e) ->
+      console.log "There was an error: ", e
+      App.vent.trigger "inquiry:failure"
