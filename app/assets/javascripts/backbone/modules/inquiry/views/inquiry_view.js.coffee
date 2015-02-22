@@ -8,7 +8,7 @@
       "name" : "#name"
       "email": "#email"
       "phone": "#phone"
-      "notes": "#notes"
+      "message": "#message"
 
     initialize: ->
       console.log "init"
@@ -31,7 +31,7 @@
         name:  @ui.name.val()
         phone: @ui.phone.val()
         email: @ui.email.val()
-        notes: @ui.notes.val()
+        notes: @ui.message.val()
       }
 
 
