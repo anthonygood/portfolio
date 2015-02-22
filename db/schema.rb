@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20150221231924) do
     t.string   "email"
     t.string   "phone"
     t.text     "message"
+    t.integer  "etching_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

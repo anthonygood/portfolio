@@ -5,6 +5,7 @@ class CreateInquiries < ActiveRecord::Migration
       t.string  :email
       t.string  :phone
       t.text    :message
+      t.integer :etching_id
 
       t.timestamps
     end
