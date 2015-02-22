@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122180412) do
+ActiveRecord::Schema.define(version: 20150221231924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20150122180412) do
   end
 
   add_index "etchings_themes", ["etching_id", "theme_id"], name: "index_etchings_themes_on_etching_id_and_theme_id", using: :btree
+
+  create_table "inquiries", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "prints", force: true do |t|
     t.string   "thumbnail_url"
