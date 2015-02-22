@@ -7,7 +7,8 @@
   <div class="col-md-6">
 
     <div class="col-sm-8 col-sm-offset-4">
-      <h1><span>Inquire</span></h1>
+      <h1><span>Enquire</span></h1>
+      <p class="note">To check availability and purchase this item, please complete the form below, and our team will contact you to make the necessary arrangements.</p>
     </div>
 
     <form id="#inquiry-form" class="form-horizontal" action="/inquiry" method="POST">
@@ -34,7 +35,7 @@
       <div class="form-group">
         <label class="col-sm-4 control-label" for="phone"><span>Phone number:</span></label>
         <div class="col-sm-8">
-          <input name="phone" id="phone" class="form-control" placeholder="(optional)"></input>
+          <input name="phone" id="phone" class="form-control" placeholder="telephone"></input>
         </div>
       </div>
 
@@ -50,4 +51,6 @@
     </form>
 
   </div>
+
+  <div id="item-info" class="col-md-5 col-md-offset-0 col-sm-8 col-sm-offset-4"></div>
 </div>

@@ -3,6 +3,7 @@
     appRoutes:
       "buy(/:id)": "buy"
       "inquire"  : "inquire"
+      "enquire"  : "inquire"
 
   class Inquiry.InquiryController extends Marionette.Controller
     initialize: ->
@@ -12,7 +13,7 @@
     buy: (id) ->
       return Backbone.history.navigate('/inquire', trigger: true) unless id
       etching = App.Data.etchings.get(id)
-      inquiry = new Inquiry.InquiryModel(etchingId: id)
+      inquiry = new Inquiry.InquiryModel(etching_id: id)
       App.headerRegion.empty()
       App.mainRegion.show new Inquiry.InquiryView model: inquiry
 

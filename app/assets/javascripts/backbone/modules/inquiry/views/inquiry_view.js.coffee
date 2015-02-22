@@ -1,7 +1,9 @@
 @BG.module "Inquiry", (Inquiry, App) ->
-  class Inquiry.InquiryView extends Marionette.ItemView
+  class Inquiry.InquiryView extends Marionette.LayoutView
     template: "inquiry/templates/inquiry"
     id: "inquiry"
+    regions:
+      itemInfo: "#item-info"
     events:
       "submit form": "submitInquiry"
       "keyup input": "clear"
@@ -16,7 +18,16 @@
     onShow: ->
       exhibit  = App.Data.etchings.get(11)
       imageUrl = exhibit.randomPrint().large_url
-      $('body').css "background-image", exhibit.backgroundImageUrl(imageUrl)
+      if etching = @model.get('etching')
+        @$('h1').text("BUY")
+        @$('.note').show()
+        @appendEtchingTitle()
+        @itemInfo.show new Inquiry.ItemInfoView(model: etching)
+      else
+        $('body').css "background-image", exhibit.backgroundImageUrl(imageUrl)
+
+    appendEtchingTitle: ->
+      @ui.message.val @model.inquiryText()
 
     submitInquiry: (e) ->
       e.preventDefault()
@@ -45,13 +56,14 @@
         name:  @ui.name.val()
         phone: @ui.phone.val()
         email: @ui.email.val()
-        notes: @ui.message.val()
+        message: @ui.message.val()
       }
 
     validate: ->
       email = @check @ui.email
       name  = @check @ui.name
-      if email && name then true else false
+      phone = @check @ui.phone
+      if phone && email && name then true else false
 
     check: ($field) ->
       if $field.val().length < 1

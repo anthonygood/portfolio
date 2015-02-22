@@ -6,6 +6,7 @@
     events:
       "click": "goToEtching"
       "click .big-name-container": "nothing"
+      "click a": "inquire"
 
     SCHEMES = "neon turquoise pink green glitz".split(" ")
 
@@ -34,3 +35,6 @@
       @$('.dots').addClass(colour).removeClass(@prevColour)
       @prevColour = colour
       @headerShine()
+
+    inquire: (e) ->
+      Backbone.history.navigate "/inquire", trigger: true
