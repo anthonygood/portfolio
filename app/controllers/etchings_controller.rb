@@ -30,10 +30,13 @@ class EtchingsController < ApplicationController
     53,
     54,
     55,
-    5,
     2,
     8,
-    10
+    10,
+    31,
+    28,
+    29,
+    16
   ]
 
   def index
