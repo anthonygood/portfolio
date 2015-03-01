@@ -113,7 +113,41 @@
     @include pseudo-dot;
     left: 50%;
   }
+
+  &.small {
+    width: 25px;
+    height: 25px;
+    border-radius: 12px;
+  }
+
+  &.loading {
+    transition: 0;
+    animation: loading-dots 1s ease-in-out infinite;
+
+    &::after { transition: 0; animation: loading-dots-after 1s ease-in-out infinite; }
+    &::before { transition: 0; animation: loading-dots-before 1s ease-in-out infinite; }
+  }
 }
+
+@keyframes loading-dots {
+  0%, 100% { background-color: rgba($silver, 0.5); }
+  33%      { background-color: rgba($paper, 0.5); }
+  66%      { background-color: rgba($gold, 0.5); }
+}
+
+@keyframes loading-dots-after {
+  0%, 100% { background-color: rgba($gold, 0.5); }
+  33%      { background-color: rgba($silver, 0.5); }
+  66%      { background-color: rgba($paper, 0.5); }
+}
+
+@keyframes loading-dots-before {
+  0%, 100% { background-color: rgba($paper, 0.5); }
+  33%      { background-color: rgba($gold, 0.5); }
+  66%      { background-color: rgba($silver, 0.5); }
+}
+
+
 
 .dots-large {
   width: 200px;
