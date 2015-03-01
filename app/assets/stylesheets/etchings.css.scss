@@ -67,21 +67,20 @@ $captionGutter: 5px;
     }
   }
 
-  .preview-container {
+  #preview {
     margin-top: 4vh;
+    min-height: 100vh;
+
     .preview {
 
       .image-container {
-        position: relative;
-        height: 500px;
-        width: 500px;
         transition-property: width;
         transition-duration: 1s;
       }
 
       .dots.loading {
         position: absolute;
-        top: 50%;
+        top: 30%;
         left: 50%;
         margin-top: -50px;
         margin-left: -50px;
@@ -124,6 +123,8 @@ $captionGutter: 5px;
   }
 
   .thumbnail-link {
+    position: relative;
+    z-index: 1;
     img {
       max-height: 150px;
       max-width: 150px;
