@@ -1,4 +1,5 @@
 <div class='image-container'>
+  <div class='dots loading'></div>
   <img class='medium' src="<%= @large_url %>" data-orientation="<%= @orientation %>" />
 </div>
 

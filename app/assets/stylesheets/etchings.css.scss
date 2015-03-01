@@ -67,7 +67,44 @@ $captionGutter: 5px;
     }
   }
 
-  .preview-container { margin-top: 4vh; }
+  .preview-container {
+    margin-top: 4vh;
+    .preview {
+
+      .image-container {
+        position: relative;
+        height: 500px;
+        width: 500px;
+        transition-property: width;
+        transition-duration: 1s;
+      }
+
+      .dots.loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -50px;
+        transition-property: opacity;
+        transition-duration: 1s;
+      }
+
+      img {
+        transition-property: opacity;
+        transition-duration: 1s;
+        opacity: 0;
+      }
+
+      &.loaded {
+        .image-container {
+          height: auto;
+          width: auto;
+        }
+        .loading { opacity: 0; }
+        img      { opacity: 1; }
+      }
+    }
+  }
 
   .thumbnails { margin-top: 15px; }
 
