@@ -13,7 +13,7 @@
     <div class='desktop-info'>
       <%- JST['backbone/modules/etching/show/templates/_title_and_info'](@) %>
     </div>
-      <p><%= @long_description %></p>
+      <p><%- @long_description %></p>
     </div>
   </div>
 

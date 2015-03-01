@@ -25,8 +25,8 @@
 
 <%= javascript_tag do %>
 
-  BG.Data.etchings.add(<%= raw json_escape @etchings.to_json(include: [:prints, :themes]) %>);
-  BG.Data.themes = new Backbone.Collection(<%= raw json_escape @themes.to_json(include: { etchings: {only: :id} }) %>);
+  BG.Data.etchings.add(<%= @etchings.to_json(include: [:prints, :themes]).html_safe %>);
+  BG.Data.themes = new Backbone.Collection(<%= @themes.to_json(include: { etchings: {only: :id} }).html_safe %>);
 
 <% end %>
 </html>
