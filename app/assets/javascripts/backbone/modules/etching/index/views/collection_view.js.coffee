@@ -2,3 +2,4 @@
 
   class Index.CollectionView extends Marionette.CollectionView
     childView: Index.ItemView
+    id: "index"
