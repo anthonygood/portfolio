@@ -4,6 +4,9 @@
     template: "etching/index/templates/item"
     events:
       "click a": "goToShow"
+    templateHelpers: ->
+      colour: @getColour()
+      notes: @model.get('prints')[0].notes
 
     onShow: ->
       src = @model.backgroundImageUrl @model.printUrl()
@@ -18,3 +21,10 @@
 
     background: ->
       'url("'+@printUrl()+'")'
+
+    getColour: ->
+      notes = @model.get('prints')[0].notes
+      if colour = notes.match(/(red)|(blue)|(green)|(red)|(yellow)|(neon)|(turquoise)|(gold)/i)
+        colour[0].toLowerCase()
+      else
+        "black"

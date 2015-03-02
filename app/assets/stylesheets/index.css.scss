@@ -39,11 +39,12 @@
       &.red   { background-color: rgba($tomato, 0.8); }
       // &.black { color:   }
       &.green { background-color: rgba($green, 0.8);  }
-      &.neon  {
+      &.neon, &.yellow {
         background-color: rgba($neonYellow, 0.8);
         li { color: darken($green, 20%); }
       }
       &.blue  { background-color: rgba($aquamarine, 0.8); }
+      &.turquoise { background-color: rgba($turquoise1, 0.8); }
     }
   }
 
