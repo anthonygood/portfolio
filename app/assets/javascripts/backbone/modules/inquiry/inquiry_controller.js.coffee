@@ -7,8 +7,8 @@
 
   class Inquiry.InquiryController extends Marionette.Controller
     initialize: ->
-      console.log "InquiryController"
       @listenTo App.vent, "inquiry:success", @thankYou
+      @listenTo App.vent, "navigation:back", @back
 
     buy: (id) ->
       return Backbone.history.navigate('/inquire', trigger: true) unless id
@@ -25,6 +25,9 @@
     thankYou: ->
       App.headerRegion.empty()
       App.mainRegion.show new Inquiry.ThanksView()
+
+    back: ->
+      Backbone.history.history.back()
   
   Inquiry.addInitializer ->
     new Inquiry.InquiryRouter controller: new Inquiry.InquiryController()
