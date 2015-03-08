@@ -23,7 +23,7 @@
 
     showLink: (event) ->
       target = event.target.dataset.target
-      @show target
+      @$(".fader[data-target-id=#{target}]").addClass "in"
 
     release: ->
       @ui.portrait.find('.slow.in').removeClass('in')
@@ -34,4 +34,4 @@
     loop: =>
       @showPortrait()
       @loopTimer = 
-        setTimeout @loop, 3000
+        setTimeout @loop, 6000
