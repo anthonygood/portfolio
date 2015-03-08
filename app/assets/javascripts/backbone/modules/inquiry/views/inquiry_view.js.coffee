@@ -90,3 +90,6 @@
     back: (e) ->
       e.preventDefault()
       App.vent.trigger("navigation:back")
+
+    onDestroy: ->
+      $('body').css "background-image", ""
