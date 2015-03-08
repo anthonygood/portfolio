@@ -6,6 +6,9 @@
     printUrl: (index=0) ->
       @get('prints')[index].medium_url
 
+    largePrintUrl: (index=0) ->
+      @get('prints')[index].large_url
+
     backgroundImageUrl: (url) ->
       ['url("', url, '")'].join('')
 

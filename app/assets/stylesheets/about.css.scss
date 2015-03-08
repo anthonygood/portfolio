@@ -1,0 +1,31 @@
+#about {
+  height: 100%;
+
+  .half {
+    width: 50%;
+    float: left;
+    height: 100%;
+
+    &.portrait {
+      position: relative;
+
+      .fader {
+        position: absolute;
+        background-color: black;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: 0.5s;
+        &.in { opacity: 1; }
+        &.fast { transition: 0.5s; z-index: 1; }
+        &.slow { transition: 2s; }
+      }
+    }
+  }
+  #preloader {
+    position: absolute;
+    right: 9999px;
+    top: 9999px;
+  }
+}

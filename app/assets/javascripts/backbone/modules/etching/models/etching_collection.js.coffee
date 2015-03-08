@@ -54,3 +54,7 @@
 
     exhibit: ->
       @get _(@SHORTLIST_IDs).sample()
+
+    fetchWithIds: (array) ->
+      @filter (etching) ->
+        array.indexOf(etching.id) != -1

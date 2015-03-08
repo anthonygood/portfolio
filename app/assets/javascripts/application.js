@@ -17,4 +17,5 @@
 //= require lib/backbone.marionette
 //= require backbone/app
 //= require_tree ./backbone/modules/etching
+//= require backbone/modules/about/views/preload_image
 //= require_tree .
