@@ -35,3 +35,6 @@
       @showPortrait()
       @loopTimer = 
         setTimeout @loop, 6000
+
+    onDestroy: ->
+      clearTimeout @loopTimer
