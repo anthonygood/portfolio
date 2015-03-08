@@ -8,4 +8,4 @@
 
     inquiryText: ->
       if etching = @get('etching')
-        "Re: \"#{etching.get('title')}\"\n"
+        "Regarding: \"#{etching.get('title')}\"\nPrice: £#{etching.get('price')}\n"

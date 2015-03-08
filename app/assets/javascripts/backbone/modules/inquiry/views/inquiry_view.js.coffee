@@ -7,7 +7,6 @@
     events:
       "submit form": "submitInquiry"
       "keyup input": "clear"
-      "click .back.arrow": "back"
     ui:
       "form" : "form"
       "name" : "#name"
@@ -86,10 +85,6 @@
     clear: (e) ->
       @$(e.target).parents('.form-group').removeClass('has-error')
       @ui.flash.slideUp()
-
-    back: (e) ->
-      e.preventDefault()
-      App.vent.trigger("navigation:back")
 
     onDestroy: ->
       $('body').css "background-image", ""
