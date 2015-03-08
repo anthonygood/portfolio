@@ -85,3 +85,6 @@
     clear: (e) ->
       @$(e.target).parents('.form-group').removeClass('has-error')
       @ui.flash.slideUp()
+
+    onDestroy: ->
+      $('body').css "background-image", ""

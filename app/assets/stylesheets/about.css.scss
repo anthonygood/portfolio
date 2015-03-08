@@ -1,0 +1,50 @@
+@import "colours";
+@import "variables";
+
+#about {
+  p a:link, p a:visited {
+    color: white;
+    background-color: $silver;
+    padding: 0 2px;
+
+    &:hover {
+      background-color: $gold;
+    }
+  }
+
+  .half {
+    width: 50vw;
+    float: left;
+    min-height: 100vh;
+
+    &.portrait {
+      position: relative;
+
+      .fader {
+        position: absolute;
+        background-color: black;
+        background-size: cover;
+        min-height: 100vh;
+        width: 50vw;
+        opacity: 0;
+        transition: 0.5s;
+        &.in { opacity: 1; }
+        &.fast { transition: 0.5s; z-index: 1; }
+        &.slow { transition: 2s; }
+      }
+    }
+  }
+  @media(max-width: $screen-sm) {
+    .half {
+      display: block;
+      width: 100vw;
+      min-height: 0;
+      padding-bottom: 60px;
+
+      &.portrait .fader {
+        width: 100vw;
+
+      }
+    }
+  }
+}

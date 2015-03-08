@@ -7,6 +7,8 @@
       navigation: "#navigation"
 
     onShow: ->
+      $(document).scrollTop(0)
+
       prints = new Backbone.Collection @model.get('prints')
       @navigation.show new Show.NavigationView(model: @model)
       @preview.show    new Show.Preview

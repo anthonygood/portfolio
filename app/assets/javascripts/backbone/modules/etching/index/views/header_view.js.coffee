@@ -6,7 +6,7 @@
     events:
       "click": "goToEtching"
       "click .big-name-container": "nothing"
-      "click a": "inquire"
+      "click a": "followLink"
 
     SCHEMES = "neon turquoise pink green glitz".split(" ")
 
@@ -36,5 +36,6 @@
       @prevColour = colour
       @headerShine()
 
-    inquire: (e) ->
-      Backbone.history.navigate "/inquire", trigger: true
+    followLink: (e) ->
+      if href = $(e.target).attr("href")
+        Backbone.history.navigate href, true
