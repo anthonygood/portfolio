@@ -11,6 +11,7 @@
     SCHEMES = "neon turquoise pink green glitz".split(" ")
 
     onShow: ->
+      window.header = @
       print = @randomPrint @model.get('prints')
       @$el.css "background-image", @model.backgroundImageUrl(print.large_url)
       @headerShine()
