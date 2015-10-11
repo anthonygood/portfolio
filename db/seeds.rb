@@ -8,8 +8,8 @@
 
 require_relative '../lib/csv_translator'
 
-t = CSVTranslator.new "#{Rails.root}/db/etchings.csv", Etching
-t.write_records_to_db(themes: true)
+t = CSVTranslator.new "#{Rails.root}/db/portfolio.csv", Etching
+t.write_records_to_db()
 
 if t.errors?
   puts "There were errors writing the following records to the database:"
