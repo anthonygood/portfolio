@@ -3,7 +3,7 @@ class Etching < ActiveRecord::Base
   validates :title, presence: true, string: true
   validates_with StringValidator, attributes: [:long_description, :short_description, :notes], allow_blank: true
 
-  has_many :prints, dependent: :destroy
+  has_many :prints, -> { order(id: :asc) }, dependent: :destroy
 
   scope :landscape, -> { where('width > height') }
   scope :portrait,  -> { where('height > width') }
