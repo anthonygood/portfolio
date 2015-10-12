@@ -8,13 +8,21 @@
       "click .big-name-container": "nothing"
       "click a": "followLink"
 
-    SCHEMES = "neon turquoise pink green glitz".split(" ")
-
     onShow: ->
-      window.header = @
+      # @$('video').on "ended", =>
+      #   @revealHeader()
+
+      setTimeout =>
+        @revealHeader()
+      , 500
+
+    revealHeader: ->
+      console.log "reveal"
+
       print = @randomPrint @model.get('prints')
       @$el.css "background-image", @model.backgroundImageUrl(print.large_url)
-      @headerShine()
+      @$el.addClass "show"
+      @$('video').remove()
 
     goToEtching: (e) ->
       e.preventDefault()
@@ -27,10 +35,6 @@
     randomPrint: (prints) ->
       prints[ _.random (prints.length - 1) ]
 
-    headerShine: () ->
-      setTimeout => 
-        @changeColour _(SCHEMES).sample()
-      , 5000
 
     changeColour: (colour) ->
       @$('.dots').addClass(colour).removeClass(@prevColour)

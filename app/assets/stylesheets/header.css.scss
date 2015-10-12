@@ -21,9 +21,13 @@ header {
     }
   }
 
+  #header-video {
+    width: 100%;
+  }
+
   h1 { 
-    font-size: 110px; 
-    line-height: 190px;
+    font-size: 48px; 
+    // line-height: 190px;
     color: $silver;
     display: inline-block;
     margin: 0;

@@ -1,3 +1,6 @@
+@import 'variables';
+@import 'colours';
+
 .big-image {
   height: 100vh;
   width: 100vw;
@@ -5,13 +8,19 @@
   background-size: cover;
   background-position: center;
   cursor: pointer;
-}
 
-.big-name-container {
-  bottom: 0;
-  position: absolute;
-  width: 100%;
-  padding: 40px 0 50px;
-  background-color: rgba(255,255,255,0.9);
-  cursor: default;
+  .big-name-container {
+    display: none;
+    position: absolute;
+    height: 50%;
+    width: 100%;
+    padding: 20px;
+    background-color: $darkSilver;
+    cursor: default;
+  }
+
+  &.show {
+    .big-name-container { display: block; }
+  }
+
 }

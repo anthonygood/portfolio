@@ -1,5 +1,5 @@
 <a href="/<%= @id %>">
-  <div class="etching portrait col-md-4 col-sm-6 col-xs-12">
+  <div class="etching portrait col-xs-12">
     <div class="spacer"></div>
     <div id="e<%= @id %>" class='etching-image'></div>
     <div class="info <%= @colour %>">
