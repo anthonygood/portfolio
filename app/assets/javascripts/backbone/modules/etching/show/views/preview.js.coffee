@@ -8,11 +8,9 @@
       "thumbnail:select": "embiggenThumbnail"
 
     onShow: ->
-      @lock = new Show.Lock(@$('.medium'), @options.orientation)
       @$(".thumbnails").hide() unless @collection.length > 1
 
     onRender: ->
-      @lock.applyLock(@$('.medium')) if @lock
       # show loading colours unless image is cached
       view = @
       @$('.medium').each (thing) ->
