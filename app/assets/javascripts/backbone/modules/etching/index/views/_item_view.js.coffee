@@ -9,7 +9,7 @@
       notes: @model.get('prints')[0].notes
 
     onShow: ->
-      src = @model.backgroundImageUrl @model.printUrl()
+      src = @model.backgroundImageUrl @model.largePrintUrl()
       @$('.etching-image').css "background-image", src
 
     goToShow: (e) ->
