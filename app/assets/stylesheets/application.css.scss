@@ -18,6 +18,7 @@
 @import "colours";
 // @import url('//fonts.googleapis.com/css?family=Oswald:400,700,300');
 // @import url(https://fonts.googleapis.com/css?family=Alfa+Slab+One);
+@import url(https://fonts.googleapis.com/css?family=Dosis:800);
 
 html {
   min-height: 100%;
@@ -55,7 +56,7 @@ body {
 #application {
   background-color: $darkSilver;
   h1, h2 {
-    font-family: Alfa Slab One, arial, sans-serif;
+    font-family: Dosis, arial, sans-serif;
   }
   a, a:link, a:visited { color: $silver; }
 }

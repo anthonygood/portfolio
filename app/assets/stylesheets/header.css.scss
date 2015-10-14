@@ -5,19 +5,60 @@ header {
   margin-top: 10px;
   margin-bottom: 40px;
 
-  .big-name { 
-    display: inline-block;
-    position: relative;
+  .big-image {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
 
-    ul {
+    .big-name-container {
+      transform: rotate(45deg);
+      transition: 0.5s;
       position: absolute;
-      left: 100%;
-      top: 0;
-      white-space: nowrap;
-      text-align: left;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
+      background-color: $darkSilver;
+      cursor: default;
+
+      width: 100vh;
+      height: 100vh;
+      left: -200vh;
+
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: -1;
+        background-color: $darkSilver;
+        height: 200vh;
+        width: 60vh;
+        transform: rotate(-45deg);
+        left: 0;
+        top: 0;
+      }
+
+      .big-name { 
+        display: inline-block;
+        position: relative;
+
+        ul {
+          position: absolute;
+          left: 100%;
+          top: 0;
+          white-space: nowrap;
+          text-align: left;
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer;
+        }
+      }
+    }
+
+    &.in {
+      .big-name-container {
+        left: -30vh;
+
+      }
     }
   }
 

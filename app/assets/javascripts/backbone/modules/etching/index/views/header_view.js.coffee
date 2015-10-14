@@ -8,21 +8,18 @@
       "click .big-name-container": "nothing"
       "click a": "followLink"
 
-    onShow: ->
-      # @$('video').on "ended", =>
-      #   @revealHeader()
+    fadeTime: 250
+    bestPics: [
+      "tabasco_2.jpg"
+    ]
 
-      setTimeout =>
+    onShow: ->
+      @$('video').on "ended", =>
         @revealHeader()
-      , 500
 
     revealHeader: ->
-      console.log "reveal"
-
-      print = @randomPrint @model.get('prints')
-      @$el.css "background-image", @model.backgroundImageUrl(print.large_url)
-      @$el.addClass "show"
-      @$('video').remove()
+      @$el.css "background-image", "url(large/tabasco_2.jpg)"
+      @$('video').fadeOut @fadeTime, => @$el.addClass "in"
 
     goToEtching: (e) ->
       e.preventDefault()
