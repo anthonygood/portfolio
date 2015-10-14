@@ -15,7 +15,7 @@ header {
 
     .big-name-container {
       transform: rotate(45deg);
-      transition: 0.5s;
+      transition: 0.5s cubic-bezier(0.320, 0.005, 0.000, 1.300);
       position: absolute;
       background-color: $darkSilver;
       cursor: default;
@@ -68,7 +68,6 @@ header {
 
   h1 { 
     font-size: 48px; 
-    // line-height: 190px;
     color: $silver;
     display: inline-block;
     margin: 0;

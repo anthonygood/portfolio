@@ -9,9 +9,6 @@
       "click a": "followLink"
 
     fadeTime: 250
-    bestPics: [
-      "tabasco_2.jpg"
-    ]
 
     onShow: ->
       @$('video').on "ended", =>
