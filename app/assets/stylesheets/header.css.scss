@@ -1,6 +1,7 @@
 @import 'colours';
 @import 'variables';
 
+
 header {
   margin-top: 10px;
   margin-bottom: 40px;
@@ -17,39 +18,52 @@ header {
       transform: rotate(45deg);
       transition: 0.5s cubic-bezier(0.320, 0.005, 0.000, 1.300);
       position: absolute;
-      background-color: $darkSilver;
-      cursor: default;
+      // background-color: $darkSilver;
+      // background-color: transparentize($darkSilver, 0.05);
 
+      background: linear-gradient(
+        45deg,
+        rgba(53, 60, 70, 0) 25%,
+        rgba(53, 60, 70, 0.01) 35%,
+        rgba(53, 60, 70, 0.92) 86%
+      );
+      cursor: default;
       width: 100vh;
       height: 100vh;
       left: -200vh;
 
-      &::after {
-        content: "";
-        display: block;
-        position: absolute;
-        z-index: -1;
-        background-color: $darkSilver;
-        height: 200vh;
-        width: 60vh;
-        transform: rotate(-45deg);
-        left: 0;
-        top: 0;
-      }
+      // &::after {
+      //   content: "";
+      //   display: block;
+      //   position: absolute;
+      //   z-index: -1;
+      //   // background-color: $darkSilver;
+      //   background-color: transparentize($darkSilver, 0.05);
+      //   height: 200vh;
+      //   width: 60vh;
+      //   transform: rotate(-45deg);
+      //   left: 0;
+      //   top: 0;
+      // }
 
       .big-name { 
         display: inline-block;
         position: relative;
 
-        ul {
-          position: absolute;
-          left: 100%;
-          top: 0;
-          white-space: nowrap;
-          text-align: left;
-          top: 50%;
-          transform: translateY(-50%);
-          cursor: pointer;
+        h2, li {
+          color: $coolSilver;
+          margin: 2px 0 0;
+        }
+
+        h2 {
+          font-size: 54px;
+          margin-right: 20px;
+        }
+
+        li {
+          font-size: 20px;
+          font-family: Dosis, arial, sans-serif;
+          margin-right: 16px;
         }
       }
     }
@@ -57,7 +71,6 @@ header {
     &.in {
       .big-name-container {
         left: -30vh;
-
       }
     }
   }
@@ -67,7 +80,7 @@ header {
   }
 
   h1 { 
-    font-size: 48px; 
+    font-size: 54px; 
     color: $silver;
     display: inline-block;
     margin: 0;

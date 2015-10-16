@@ -3,6 +3,11 @@
     <h1>
       nicholas good
     </h1>
+    <h2>3D artist</h2>
+    <ul class="actions">
+    	<li><a class="mail" href="mailto:nicholasgood3d@hotmail.com">contact me</a></li>
+    	<li><a class="see-more" href="#">see more stuff</a></li>
+    </ul>
   </div>
 </div>
 

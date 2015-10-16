@@ -3,22 +3,40 @@
   class Index.HeaderView extends Marionette.ItemView
     template: "etching/index/templates/header"
     className: "big-image text-center"
+    ui:
+      seeMore: ".see-more"
     events:
-      "click": "goToEtching"
+      "click": "goToPiece"
       "click .big-name-container": "nothing"
-      "click a": "followLink"
+      "click .mail": "followLink"
+      "click @ui.seeMore": "scrollDown"
 
     fadeTime: 250
+    headerVideo: "video/flytrap.mp4"
+
+    onRender: ->
+      @$el.css "background-image", "url(large/tabasco_2.jpg)"
+
+      if @videoViewed()
+        @$("video").hide()
+        @$el.addClass "in"
+
+      store = window.localStorage
+      store.setItem "header:video:viewed", @headerVideo
+      store.setItem "header:video:viewedAt", new Date()
 
     onShow: ->
-      @$('video').on "ended", =>
+      return if @videoViewed()
+      @$("video").on "ended", =>
         @revealHeader()
 
-    revealHeader: ->
-      @$el.css "background-image", "url(large/tabasco_2.jpg)"
-      @$('video').fadeOut @fadeTime, => @$el.addClass "in"
+      # setTimeout @revealHeader.bind(@), 1000
 
-    goToEtching: (e) ->
+    videoViewed:   -> !!@videoViewedAt()
+    videoViewedAt: -> window.localStorage.getItem "header:video:viewedAt"
+    revealHeader:  -> @$('video').fadeOut @fadeTime, => @$el.addClass("in")
+
+    goToPiece: (e) ->
       e.preventDefault()
       Backbone.history.navigate "/#{@model.get('id')}", trigger: true
 
@@ -26,15 +44,11 @@
       e.preventDefault()
       e.stopPropagation()
 
-    randomPrint: (prints) ->
-      prints[ _.random (prints.length - 1) ]
-
-
-    changeColour: (colour) ->
-      @$('.dots').addClass(colour).removeClass(@prevColour)
-      @prevColour = colour
-      @headerShine()
+    scrollDown: (e) ->
+      $("body").animate
+        scrollTop: $("#e1").offset().top
 
     followLink: (e) ->
-      if href = $(e.target).attr("href")
-        Backbone.history.navigate href, true
+      $target = $(e.target)
+      if href = $target.attr("href")
+        if $target.hasClass "mail" then return window.location = href else return Backbone.history.navigate href, true
