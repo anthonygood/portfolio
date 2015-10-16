@@ -13,9 +13,10 @@
 
     fadeTime: 250
     headerVideo: "video/flytrap.mp4"
+    headerBackground: "large/tabasco_2.jpg"
 
     onRender: ->
-      @$el.css "background-image", "url(large/tabasco_2.jpg)"
+      @$el.css "background-image", "url(#{@headerBackground})"
 
       if @videoViewed()
         @$("video").hide()
