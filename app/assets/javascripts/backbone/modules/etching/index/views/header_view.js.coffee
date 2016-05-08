@@ -6,6 +6,7 @@
     ui:
       seeMore: ".see-more"
       videoContainer: ".video-container"
+      loadContainer: ".load-container"
       video: "video"
       videoBar: ".video-bar"
     events:
@@ -31,7 +32,7 @@
         store.setItem "header:video:viewed", @headerVideo
         store.setItem "header:video:viewedAt", new Date()
 
-        $video = @$("video")
+        $video = @ui.video
         $video.on "progress", @progress.bind(@)
         $video.one "ended", @revealHeader.bind(@)
 
@@ -50,8 +51,7 @@
     videoViewed:   -> !!@videoViewedAt()
     videoViewedAt: -> window.localStorage.getItem "header:video:viewedAt"
     revealHeader:  -> @$('video').fadeOut @fadeTime, => @$el.addClass("in")
-    hideLoadContainer: -> @$(".load-container").css opacity: 0
-
+    hideLoadContainer: -> @ui.loadContainer.fadeOut @fadeTime, => @ui.loadContainer.remove()
     goToPiece: (e) ->
       e.preventDefault()
       Backbone.history.navigate "/#{@model.get('id')}", trigger: true
@@ -69,4 +69,4 @@
       e.preventDefault()
       e.stopPropagation()
 
-    onDestroy: -> $video.off()
+    onDestroy: -> @ui.video.off()
