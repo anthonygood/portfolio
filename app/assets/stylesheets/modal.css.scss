@@ -1,0 +1,22 @@
+@import 'colours';
+
+#modal-region .modal {
+  .modal-dialog {
+  	width: 100%;
+  	margin: 0;
+  	color: white;
+
+  	button { 
+  		opacity: 1;
+  		text-shadow: none; 
+  		color: white;
+  	}
+
+  	.modal-content {
+  		min-height: 100vh;
+  		background-color: $darkSilver;
+
+  		.modal-body { margin: 0 20px; }
+  	}
+  }
+}
