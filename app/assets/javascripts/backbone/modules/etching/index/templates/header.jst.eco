@@ -11,6 +11,15 @@
   </div>
 </div>
 
-<video autoplay poster="large/flytrap.jpg" id="header-video">
-  <source src="video/flytrap.mp4" type="video/mp4">
-</video>
+<div class="video-container">
+  <video muted preload=auto id="header-video">
+    <source src="video/flytrap.mp4" type="video/mp4">
+  </video>
+  <div class="load-container">
+    <div class="title">
+      <h1>nicholas good</h1>
+      <h2>3D artist</h2>
+    </div>
+    <div class="video-bar"></div>
+  </div>
+</div>

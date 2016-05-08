@@ -8,6 +8,7 @@
   App.addRegions
     headerRegion: "#header-region"
     mainRegion:   "#main-region"
+    aboutRegion:  "#about-region"
     footerRegion: "#footer"
 
   App.on "start", ->

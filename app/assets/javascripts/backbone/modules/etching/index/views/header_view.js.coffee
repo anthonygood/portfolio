@@ -5,6 +5,9 @@
     className: "big-image text-center"
     ui:
       seeMore: ".see-more"
+      videoContainer: ".video-container"
+      video: "video"
+      videoBar: ".video-bar"
     events:
       "click": "goToPiece"
       "click .big-name-container": "nothing"
@@ -17,33 +20,41 @@
 
     onRender: ->
       @$el.css "background-image", "url(#{@headerBackground})"
+      @ui.video.css opacity: 0
 
       if @videoViewed()
+        @hideLoadContainer()
         @$("video").hide()
         @$el.addClass "in"
+      else
+        store = window.localStorage
+        store.setItem "header:video:viewed", @headerVideo
+        store.setItem "header:video:viewedAt", new Date()
 
-      store = window.localStorage
-      store.setItem "header:video:viewed", @headerVideo
-      store.setItem "header:video:viewedAt", new Date()
+        $video = @$("video")
+        $video.on "progress", @progress.bind(@)
+        $video.one "ended", @revealHeader.bind(@)
 
-    onShow: ->
-      return if @videoViewed()
-      @$("video").on "ended", =>
-        @revealHeader()
+    progress: (e) ->
+      video = @$("video")[0]
+      endBuffer = if video.buffered.length then video.buffered.end(0) else 0
+      currentProgress = ( endBuffer / video.duration ) * 100
 
-      # setTimeout @revealHeader.bind(@), 1000
+      @ui.videoBar.css width: "#{currentProgress}%"
+
+      if currentProgress == 100
+        @hideLoadContainer()
+        video.play()
+        @ui.video.css opacity: 1
 
     videoViewed:   -> !!@videoViewedAt()
     videoViewedAt: -> window.localStorage.getItem "header:video:viewedAt"
     revealHeader:  -> @$('video').fadeOut @fadeTime, => @$el.addClass("in")
+    hideLoadContainer: -> @$(".load-container").css opacity: 0
 
     goToPiece: (e) ->
       e.preventDefault()
       Backbone.history.navigate "/#{@model.get('id')}", trigger: true
-
-    nothing: (e) ->
-      e.preventDefault()
-      e.stopPropagation()
 
     scrollDown: (e) ->
       $("body").animate
@@ -53,3 +64,9 @@
       $target = $(e.target)
       if href = $target.attr("href")
         if $target.hasClass "mail" then return window.location = href else return Backbone.history.navigate href, true
+
+    nothing: (e) ->
+      e.preventDefault()
+      e.stopPropagation()
+
+    onDestroy: -> $video.off()
