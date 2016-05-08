@@ -35,32 +35,11 @@ $captionGutter: 5px;
     max-height: 90vh;
   }
 
-  li.buy {
-    margin-top: 15px;
-    a {
-      display: block;
-      height: 50px;
-      width: 50px;
-      line-height: 50px;
-      text-align: center;
-      border-radius: 25px;
-      background-color: $silver;
-      color: white !important;
-      transition: 1s;
-
-      &:hover {
-        background-color: $gold;
-        text-decoration: none;
-      }
-    }
-  }
-
   #preview {
     margin-top: 4vh;
     min-height: 100vh;
 
     .preview {
-
       .image-container {
         transition-property: width;
         transition-duration: 1s;
@@ -139,21 +118,6 @@ ul {
   padding-left: 0;
   color: $silver;
 }
-
-
-// strong { color: $orange;
-//   li:nth-child(2) & { color: $pink; }
-//   li:nth-child(3) & { color: $blue; }
-//   li:nth-child(4) & { color: $green;  }
-//   li:nth-child(5) & { color: $turquoise1; }
-// }
-
-// #exhibit {
-//   .etching {
-//     padding-top: 20%;
-//     height: auto;
-//   }
-// }
 
 .mobile-info {
   display: none;
