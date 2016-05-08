@@ -1,4 +1,4 @@
-<a href="/<%= @id %>">
+<div>
   <div class="etching col-xs-12 col-md-4">
     <div class="spacer"></div>
     <div id="e<%= @id %>" class='etching-image'></div>
@@ -8,6 +8,6 @@
       </ul>
     </div>
   </div>
-</a>
+</div>
 
 

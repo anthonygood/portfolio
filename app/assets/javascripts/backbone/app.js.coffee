@@ -6,6 +6,7 @@
   App = new Marionette.Application
 
   App.addRegions
+    modalRegion: "#modal-region"
     headerRegion: "#header-region"
     mainRegion:   "#main-region"
     aboutRegion:  "#about-region"
