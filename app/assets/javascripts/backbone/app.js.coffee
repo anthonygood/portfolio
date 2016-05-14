@@ -1,4 +1,6 @@
 @BG = do (Backbone, Marionette) ->
+  console.log "boot"
+  console.log arguments
   $.ajaxSetup
     headers:
       'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -14,6 +16,10 @@
 
   App.on "start", ->
     Backbone.history.start(pushState: true) if Backbone.history
+
+  App.showModal = (model) ->
+      App.modalRegion.show new App.Etching.ModalView
+        model: model
 
   # catch all link clicks and route via Backbone.history
   $(document).on "click", "a", (e) ->

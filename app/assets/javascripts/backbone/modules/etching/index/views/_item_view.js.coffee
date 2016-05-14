@@ -14,8 +14,7 @@
       @$('.etching-image').css "background-image", src
 
     viewItem: ->
-      App.modalRegion.show new App.Etching.ModalView
-        model: @model
+      App.showModal @model
 
     printUrl: ->
       @model.get('prints')[0].medium_url

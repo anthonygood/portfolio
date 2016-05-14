@@ -54,7 +54,7 @@
     hideLoadContainer: -> @ui.loadContainer.fadeOut @fadeTime, => @ui.loadContainer.remove()
     goToPiece: (e) ->
       e.preventDefault()
-      Backbone.history.navigate "/#{@model.get('id')}", trigger: true
+      App.showModal @model
 
     scrollDown: (e) ->
       $("body").animate
