@@ -5,12 +5,22 @@
     className: "modal fade"
     ui:
     	modalContent: ".modal-content"
+    	prev: "button.prev"
+    	next: "button.next"
+    events:
+    	"click @ui.prev": "prev"
+    	"click @ui.next": "next"
 
     templateHelpers: ->
     	image: @model.largePrintUrl()
 
     onShow: ->
     	@$el.modal()
-    # 	@ui.modalContent.css "background-image", "url(#{@model.largePrintUrl()})"
 
+    prev: ->
+    	@model = @model.collection.prev @model
+    	@render()
 
+    next: ->
+    	@model = @model.collection.next @model
+    	@render()
