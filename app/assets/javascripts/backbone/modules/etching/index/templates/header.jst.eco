@@ -1,13 +1,25 @@
-<div class="big-name-container">
-  <div class="dots dots-large ink"></div>
+<div class="big-name-container text-right">
   <div class="big-name">
     <h1>
-      BILL GOOD
+      nicholas good
     </h1>
-    <ul>
-      <li><a class="about-good" href="/about">About Bill Good</a></li>
-      <li><a class="about-etching" href="/enquire">About Etching</a></li>
-      <li><a class="inquire" href="/enquire">Enquire</a></li>
+    <h2>3D artist</h2>
+    <ul class="actions">
+    	<li><a class="mail" href="mailto:nicholasgood3d@hotmail.com">contact me</a></li>
+    	<li><a class="see-more" href="#">see more stuff</a></li>
     </ul>
+  </div>
+</div>
+
+<div class="video-container">
+  <video muted preload=auto id="header-video">
+    <source src="video/flytrap.mp4" type="video/mp4">
+  </video>
+  <div class="load-container">
+    <div class="title">
+      <h1>nicholas good</h1>
+      <h2>3D artist</h2>
+    </div>
+    <div class="video-bar"></div>
   </div>
 </div>

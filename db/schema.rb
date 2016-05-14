@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221231924) do
+ActiveRecord::Schema.define(version: 20160514154000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,17 +19,11 @@ ActiveRecord::Schema.define(version: 20150221231924) do
   create_table "etchings", force: true do |t|
     t.string   "title"
     t.text     "short_description"
-    t.integer  "height"
-    t.integer  "width"
-    t.integer  "plates"
-    t.integer  "print_run"
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "year"
     t.text     "long_description"
     t.boolean  "listed",            default: true
-    t.integer  "price"
   end
 
   create_table "etchings_themes", id: false, force: true do |t|
@@ -39,25 +33,12 @@ ActiveRecord::Schema.define(version: 20150221231924) do
 
   add_index "etchings_themes", ["etching_id", "theme_id"], name: "index_etchings_themes_on_etching_id_and_theme_id", using: :btree
 
-  create_table "inquiries", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "phone"
-    t.text     "message"
-    t.integer  "etching_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "prints", force: true do |t|
-    t.string   "thumbnail_url"
     t.string   "large_url"
-    t.string   "tags"
     t.integer  "etching_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "notes"
-    t.string   "medium_url"
   end
 
   add_index "prints", ["etching_id"], name: "index_prints_on_etching_id", using: :btree

@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bill Good</title>
+  <title>Nicholas Good</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
@@ -11,7 +11,9 @@
 
 <%= yield %>
 
+<div id="modal-region"></div>
 <header id="header-region"></header>
+<section id="about-region"></section>
 <section id="main-region"></section>
 <footer id="footer"></footer>
 
@@ -26,8 +28,7 @@
 
 <%= javascript_tag do %>
 
-  BG.Data.etchings.add(<%= @etchings.to_json(include: [:prints, :themes]).html_safe %>);
-  BG.Data.themes = new Backbone.Collection(<%= @themes.to_json(include: { etchings: {only: :id} }).html_safe %>);
+  BG.Data.etchings.add(<%= @etchings.to_json(include: :prints).html_safe %>);
 
 <% end %>
 </html>

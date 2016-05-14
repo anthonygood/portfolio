@@ -1,0 +1,42 @@
+title,short_description,long_description,notes,version_a,version_b,version_c,version_d,version_e
+Tabasco,A bottle of tabasco worshipped by chilli peppers.,"I bought a load of condiment bottles to do some photoreal illustrations using my own ideas.
+ 
+This is my second one after the Ketchup ad. Chilli Peppers worshipping Tabasco sauce - need I say more ?
+ 
+The Chillis were modelled with Maya and sculpted in ZBrush. I used a rigging plugin for Maya so that I could create lots of poses quickly without having to sculpt a load of poses.
+ 
+Rendered with V-Ray - and I added a few render passes (below) to tweak the image a little in Photoshop.",,master,detail,detail,render passes,
+Nelson,Nelson taking a dump.,"3D Model and sculpt I made of Lord Nelson.
+ 
+Made with Maya, ZBrush, V-Ray, Photoshop and also After Effects.
+ 
+I also made a quick animation in Giff format, rendered from After Effects.",,master,detail,in-progress,animated,
+Ketchup,Ketchup ad concept.,"I bought a load of condiment 3d models from modelplusmodel.com as the ketchup model included seemed to be the most accurate and cheapest to buy as you get a whole set. You can see the models on http://www.modelplusmodel.com/accessories/food/926-sauces-set.html
+ 
+These are only shaded for you if you are a 3DS Max user so I only had the raw models and labels. So I had to create shaders for the bottle. The Glass with some ketchup on the inside, the glass with ketchup inside and a blend shader to get the gold section on the labelling.
+ 
+The text was based on a couple of quick sketches I made in my sketchpad and shaded with a Sub Surface Scattering Shader with V-Ray 3.0, which means it allows light to pass through it. There is actually a preset you can turn on called ketchup but it still needed a lot of tweaking as it wasn't shiny enough and not letting enough light through with my lighting set-up. I also had to create a bump texture to make it look more real.
+ 
+Overall a really fun and fairly quick project.",,master,mesh,,,
+Oscar,Gold Oscar trophy with fat head. ,"I originally modelled this as a pitch for a 3D Printing job, unfortunately that job never came round. I decided to shade and render it and make a short motion piece with it.
+ 
+The Oscar was modelled and retopologized in ZBrush. Rendered with Mental Ray and post in After Effects.
+ 
+Not the most creative project. I tried to change the proportions a bit to add some interest.",,master,mesh,,,
+Marmite,Marmite ad concept.,"Another personal idea made with some condiment bottles I bought from the web.
+ 
+Yet another project involving hands - again made from scratch - pretty much.
+ 
+The hand was torn off of a low poly basemesh from a human model in ZBrush. And then sculpted and posed in ZBrush. For all of the geeks in the building you can see that from the bad topology. But as this is for a still it's ok.
+ 
+Details were a combination of a displacement from ZBrush, mixed with Photoshop bump maps from photo details.
+ 
+The skull ring was also a quick sculpt in ZBrush from high poly / bad topology. And a displacement from ZBrush added with a bump from metal texture.
+ 
+Hair was made with V-Ray fur and a texture map to control it's location.
+ 
+I painted the base colours for the texture in ZBrush for the individual both fists and then added loads of details individually for the colour and SSS in Photoshop.
+ 
+Rendered and shaded with V-Ray 3.
+ 
+The whole image took 5 Days in total.",,master,mesh,detail,detail,

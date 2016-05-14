@@ -1,8 +1,0 @@
-<div class='image-container'>
-  <img class='medium' src="<%= @large_url %>" data-orientation="<%= @orientation %>" />
-</div>
-
-<div class="thumbnails">
-</div>
-
-<div class='dots loading'></div>

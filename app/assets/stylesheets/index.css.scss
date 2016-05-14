@@ -1,14 +1,11 @@
 @import "variables";
 @import "colours";
 
-#e20 { background-position-x: 0px;    } // reclining squares ii
-#e25 { background-position-y: 0px;   } // mirror, mirror
-#e27 { background-position-x: -275px; } // reclining nude ii
-#e29 { background-position-y: -391px; } // tiger in a bunker
-
 #index {
 
   .etching {
+    height: 80vh;
+
     &:hover .info { 
       opacity: 1;
       padding-left: 10px;
@@ -17,10 +14,10 @@
     .info {
       transition: 0.5s;
       position: absolute;
-      background-color: rgba(black, 0.7);
+      background-color: $darkSilver;
       color: white;
       width: 100%;
-      height: 50%;
+      height: 70px;
       bottom: 0;
       left: 0;
       font-weight: 100;
@@ -31,13 +28,12 @@
       li { color: white; }
 
       .title {
-        font-family: Oswald;
+        font-family: Dosis, arial, sans-serif;
         font-weight: 400;
       }
 
       &.gold  { background-color: rgba($gold, 0.8);   }
       &.red   { background-color: rgba($tomato, 0.8); }
-      // &.black { color:   }
       &.green { background-color: rgba($green, 0.8);  }
       &.neon, &.yellow {
         background-color: rgba($neonYellow, 0.8);
@@ -50,23 +46,13 @@
 
   @media(min-width: $screen-sm) {
     .etching .info {
-      // background-color: red;
       font-size: 30px;
       line-height: 30px;
     }
   }
 
-  // @media(min-width: $screen-md) {
-  //   .info {
-  //     background-color: blue;
-  //     font-size: 30px;
-  //     line-height: 30px;
-  //     }
-  // }
-
   @media(min-width: $screen-lg) {
     .etching .info { 
-      // background-color: green;
       font-size: 40px;
       line-height: 40px;
     }

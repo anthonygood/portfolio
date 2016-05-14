@@ -1,6 +1,0 @@
-<div class="thumbnail">
-  <img src="<%= @prints[0].medium_url %>" />
-  <p>£<%= @price %></p>
-  <p><%= @height %> x <%= @width %> mm </p>
-  <p>print run: <%= @print_run %></p>
-</div>

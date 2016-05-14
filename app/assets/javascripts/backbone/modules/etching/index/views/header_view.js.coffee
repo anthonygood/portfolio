@@ -3,39 +3,70 @@
   class Index.HeaderView extends Marionette.ItemView
     template: "etching/index/templates/header"
     className: "big-image text-center"
+    ui:
+      seeMore: ".see-more"
+      videoContainer: ".video-container"
+      loadContainer: ".load-container"
+      video: "video"
+      videoBar: ".video-bar"
     events:
-      "click": "goToEtching"
+      "click": "goToPiece"
       "click .big-name-container": "nothing"
-      "click a": "followLink"
+      "click .mail": "followLink"
+      "click @ui.seeMore": "scrollDown"
 
-    SCHEMES = "neon turquoise pink green glitz".split(" ")
+    fadeTime: 250
+    headerVideo: "video/flytrap.mp4"
+    headerBackground: "large/tabasco_2.jpg"
 
-    onShow: ->
-      print = @randomPrint @model.get('prints')
-      @$el.css "background-image", @model.backgroundImageUrl(print.large_url)
-      @headerShine()
+    onRender: ->
+      @$el.css "background-image", "url(#{@headerBackground})"
+      @ui.video.css opacity: 0
 
-    goToEtching: (e) ->
+      if @videoViewed()
+        @hideLoadContainer()
+        @$("video").hide()
+        @$el.addClass "in"
+      else
+        store = window.localStorage
+        store.setItem "header:video:viewed", @headerVideo
+        store.setItem "header:video:viewedAt", new Date()
+
+        $video = @ui.video
+        $video.on "progress", @progress.bind(@)
+        $video.one "ended", @revealHeader.bind(@)
+
+    progress: (e) ->
+      video = @$("video")[0]
+      endBuffer = if video.buffered.length then video.buffered.end(0) else 0
+      currentProgress = ( endBuffer / video.duration ) * 100
+
+      @ui.videoBar.css width: "#{currentProgress}%"
+
+      if currentProgress == 100
+        @hideLoadContainer()
+        video.play()
+        @ui.video.css opacity: 1
+
+    videoViewed:   -> !!@videoViewedAt()
+    videoViewedAt: -> window.localStorage.getItem "header:video:viewedAt"
+    revealHeader:  -> @$('video').fadeOut @fadeTime, => @$el.addClass("in")
+    hideLoadContainer: -> @ui.loadContainer.fadeOut @fadeTime, => @ui.loadContainer.remove()
+    goToPiece: (e) ->
       e.preventDefault()
-      Backbone.history.navigate "/#{@model.get('id')}", trigger: true
+      App.showModal @model
+
+    scrollDown: (e) ->
+      $("body").animate
+        scrollTop: $("#e1").offset().top
+
+    followLink: (e) ->
+      $target = $(e.target)
+      if href = $target.attr("href")
+        if $target.hasClass "mail" then return window.location = href else return Backbone.history.navigate href, true
 
     nothing: (e) ->
       e.preventDefault()
       e.stopPropagation()
 
-    randomPrint: (prints) ->
-      prints[ _.random (prints.length - 1) ]
-
-    headerShine: () ->
-      setTimeout => 
-        @changeColour _(SCHEMES).sample()
-      , 5000
-
-    changeColour: (colour) ->
-      @$('.dots').addClass(colour).removeClass(@prevColour)
-      @prevColour = colour
-      @headerShine()
-
-    followLink: (e) ->
-      if href = $(e.target).attr("href")
-        Backbone.history.navigate href, true
+    onDestroy: -> @ui.video.off()

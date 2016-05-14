@@ -2,12 +2,8 @@ class Etching < ActiveRecord::Base
 
   validates :title, presence: true, string: true
   validates_with StringValidator, attributes: [:long_description, :short_description, :notes], allow_blank: true
-  validates_numericality_of :height, :width, :plates, :print_run, { only_integer: true, allow_blank: true }
-  validates :year, { year: true, allow_blank: true }
 
-  has_many :prints, dependent: :destroy
-  has_many :inquiries
-  has_and_belongs_to_many :themes
+  has_many :prints, -> { order(id: :asc) }, dependent: :destroy
 
   scope :landscape, -> { where('width > height') }
   scope :portrait,  -> { where('height > width') }
@@ -47,20 +43,7 @@ class Etching < ActiveRecord::Base
     end
   end
 
-  def orientation
-    return nil unless width && height
-    if width > height
-      "landscape"
-    else
-      "portrait"
-    end
-  end
-
   def css_name
     title.downcase.gsub(' ', '-')
-  end
-
-  def as_json(options)
-    super(options).merge "orientation" => orientation
   end
 end

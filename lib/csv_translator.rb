@@ -1,5 +1,11 @@
 require 'csv'
 
+## Translates an appropriately-formatted CSV into Etchings with Prints
+## Prints are generated according to the column titles:
+## 'version_a', 'version_b', etc. or 'version_anything_123'
+## The word 'version' must be present when denoting a print, in other words!
+## TODO:
+## Change vocabulary to be more general, less etching-centric
 class CSVTranslator
   attr_accessor :csv, :etching_model, :column_titles
 
@@ -13,7 +19,7 @@ class CSVTranslator
     @translations ||= csv.collect do |row| 
       row.each_with_index.inject(Translation.new invalid_keys) do |hash,(value,index)| 
         hash[column_titles[index].to_sym] = value
-        hash  
+        hash
       end
     end
   end
