@@ -1,5 +1,9 @@
 @import 'colours';
 
+.modal.in .modal-dialog {
+	transform: none !important; // override transform to allow fixed positioning
+}
+
 #modal-region .modal {
   .modal-dialog {
   	width: 100%;
@@ -12,11 +16,58 @@
   		color: white;
   	}
 
+  	.control-panel {
+  		opacity: 1;
+  		text-shadow: none;
+  		color: white;
+			position: fixed;
+			z-index: 10;
+			right: 25px;
+			background-color: transparentize($darkSilver, 0.25);
+
+			button {
+				background-color: transparent;
+				border: none;
+				font-size: 80px;
+				font-weight: 100;
+				line-height: 40px;
+
+				&:hover {
+					font-weight: 200;
+					line-height: 35px;
+				}
+		  }
+  	}
+
   	.modal-content {
   		min-height: 100vh;
   		background-color: $darkSilver;
 
-  		.modal-body { margin: 0 20px; }
+  		.modal-body {
+  			margin: 0;
+  			padding: 0;
+  			overflow: scroll;
+  		}
+
+  		.marquee-image {
+  			min-width: 100vw;
+  			min-height: 100vh;
+  			position: relative;
+  			left: 0;
+  		}
+
+  		section.description {
+  			position: fixed;
+  			max-width: 50%;
+  			max-height: 50%;
+  			overflow: scroll;
+  			left: 25px;
+  			bottom: 25px;
+  			font-size: 30px;
+  			line-height: 34px;
+  			font-weight: 100;
+  			span { background-color: transparentize($darkSilver, 0.25); }
+  		}
   	}
   }
 }

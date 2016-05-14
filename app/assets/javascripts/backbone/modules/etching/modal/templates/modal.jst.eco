@@ -1,10 +1,17 @@
 <div class="modal-dialog">
 	<div class="modal-content">
 
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<div class="control-panel">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<button type="button" class="prev" aria-label="Previous"><span aria-hidden="true"><</span></button>
+			<button type="button" class="next" aria-label="Next"><span aria-hidden="true">></span></button>
+		</div>
 
 		<div class="modal-body">
-			modal.jst.eco
+			<img class="marquee-image" src="<%= @image %>" />
+			<section class="description">
+				<span><%= @long_description %></span>
+			</section>
 		</div>
 	</div>
 </div>
