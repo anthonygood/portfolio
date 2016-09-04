@@ -18,8 +18,8 @@
     Backbone.history.start(pushState: true) if Backbone.history
 
   App.showModal = (model) ->
-      App.modalRegion.show new App.Etching.ModalView
-        model: model
+    App.modalRegion.show new App.Etching.ModalView
+      model: model
 
   # catch all link clicks and route via Backbone.history
   $(document).on "click", "a", (e) ->
