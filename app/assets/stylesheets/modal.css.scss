@@ -1,4 +1,5 @@
 @import 'colours';
+@import 'variables';
 
 .modal.in .modal-dialog {
 	transform: none !important; // override transform to allow fixed positioning
@@ -37,6 +38,10 @@
 					line-height: 35px;
 				}
 		  }
+
+      @media(max-width: $screen-xs) {
+        right: inherit;
+      }
   	}
 
   	.modal-content {
