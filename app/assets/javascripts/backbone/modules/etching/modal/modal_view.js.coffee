@@ -27,7 +27,9 @@
       @$el.scrollTop @midScreenPoint()
 
     midScreenPoint: ->
-      @ui.image.height() / 2
+      screenMid = $(window).height() / 2
+      imageMid  = @ui.image.height() / 2
+      imageMid - screenMid
 
     prev: ->
       @model = @model.collection.prev @model
