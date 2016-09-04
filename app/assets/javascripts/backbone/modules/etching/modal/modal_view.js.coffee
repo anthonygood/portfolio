@@ -4,23 +4,37 @@
     template: "etching/modal/templates/modal"
     className: "modal fade"
     ui:
-    	modalContent: ".modal-content"
-    	prev: "button.prev"
-    	next: "button.next"
+      modalContent: ".modal-content"
+      prev: "button.prev"
+      next: "button.next"
+      image: ".marquee-image"
     events:
-    	"click @ui.prev": "prev"
-    	"click @ui.next": "next"
+      "click @ui.prev": "prev"
+      "click @ui.next": "next"
 
     templateHelpers: ->
-    	image: @model.largePrintUrl()
+      image: @model.largePrintUrl()
+
+    onRender: ->
+      @scrollMid()
 
     onShow: ->
-    	@$el.modal()
+      @$el.modal()
+      $(".modal").one "shown.bs.modal", =>
+        @$el.animate scrollTop: @midScreenPoint()
+
+    scrollMid: ->
+      @$el.scrollTop @midScreenPoint()
+
+    midScreenPoint: ->
+      screenMid = $(window).height() / 2
+      imageMid  = @ui.image.height() / 2
+      imageMid - screenMid
 
     prev: ->
-    	@model = @model.collection.prev @model
-    	@render()
+      @model = @model.collection.prev @model
+      @render()
 
     next: ->
-    	@model = @model.collection.next @model
-    	@render()
+      @model = @model.collection.next @model
+      @render()

@@ -9,7 +9,7 @@
 
 		<div class="modal-body">
 			<img class="marquee-image" src="<%= @image %>" />
-			<section class="description">
+			<section class="description hidden-xs">
 				<span><%= @long_description %></span>
 			</section>
 		</div>
