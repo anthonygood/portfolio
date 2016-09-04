@@ -1,7 +1,6 @@
 @import 'colours';
 @import 'variables';
 
-
 header {
   margin-top: 10px;
   margin-bottom: 40px;
@@ -29,25 +28,37 @@ header {
       width: 100vh;
       height: 100vh;
       left: -200vh;
+      padding: 12px;
+
+      // adjust style for portrait
+      @media(orientation: portrait){
+        width: 100vw;
+        height: 100vw;
+      }
 
       .big-name { 
         display: inline-block;
         position: relative;
 
         h2, li {
-          color: $coolSilver;
+          color: $silver;
           margin: 2px 0 0;
         }
 
+        li a, li a:visited { color: white; }
+
         h2 {
           font-size: 54px;
-          margin-right: 20px;
         }
 
         li {
           font-size: 20px;
           font-family: Dosis, arial, sans-serif;
-          margin-right: 16px;
+        }
+
+        @media(max-width: $screen-xs) {
+          h1 { font-size: 30px; }
+          h2 { font-size: 20px; }
         }
       }
     }
@@ -66,6 +77,7 @@ header {
   h1 { 
     font-size: 54px; 
     color: $silver;
+    color: white;
     display: inline-block;
     margin: 0;
     cursor: default;
@@ -75,7 +87,6 @@ header {
     .big-name ul {
       margin-top: 15px;
       position: static;
-      text-align: center;
     }
     h1 { font-size: 20vw; }
   }

@@ -10,15 +10,13 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+
  *= require_tree .
  *= require_self
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "colours";
-// @import url('//fonts.googleapis.com/css?family=Oswald:400,700,300');
-// @import url(https://fonts.googleapis.com/css?family=Alfa+Slab+One);
-@import url(https://fonts.googleapis.com/css?family=Dosis:800);
 
 html {
   min-height: 100%;
@@ -56,7 +54,7 @@ body {
 #application {
   background-color: $darkSilver;
   h1, h2, h3 {
-    font-family: Dosis, arial, sans-serif;
+    font-family: Dosis, Helvetica, arial, sans-serif;
   }
   a, a:link, a:visited { color: $silver; }
 }
